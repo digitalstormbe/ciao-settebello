@@ -53,9 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const frameImages = new Array(FRAME_COUNT);
   let currentFrame = -1;
 
-  // Build frame paths: first.png → frame_0002—0072.webp → last.png
+  // Build frame paths: first.png → frame_0002.png → frame_0003—0072.webp → last.png
   framePaths.push('assets/frames/first.png');
-  for (let i = 2; i <= 72; i++) {
+  framePaths.push('assets/frames/frame_0002.png');
+  for (let i = 3; i <= 72; i++) {
     framePaths.push('assets/frames/frame_' + String(i).padStart(4, '0') + '.webp');
   }
   framePaths.push('assets/frames/last.png');
@@ -144,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: {
         trigger: scrollAnimSection,
         start: 'top top',
-        end: 'bottom bottom',
+        end: '75% bottom',
         scrub: true,
       },
       onUpdate: () => {
@@ -237,13 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     }
 
-    // Everything fades out together near the end (80-95%)
+    // Everything fades out at the very end (90-98%) — after last-frame hold
     heroTL.to('#heroText', {
       opacity: 0,
       y: -40,
-      duration: 0.12,
+      duration: 0.08,
       ease: 'power2.in',
-    }, 0.82);
+    }, 0.90);
   }
 
   // ========================================
@@ -791,24 +792,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileLinks = document.querySelectorAll('.mobile-menu__link, .mobile-menu__cta');
 
-  // Scroll state
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    // Auto-hide nav on scroll down, show on scroll up
-    if (currentScroll > 300) {
-      if (currentScroll > lastScroll && !mobileMenu.classList.contains('active')) {
-        navbar.style.transform = 'translateX(-50%) translateY(-120%)';
-      } else {
-        navbar.style.transform = 'translateX(-50%) translateY(0)';
-      }
-    } else {
-      navbar.style.transform = 'translateX(-50%) translateY(0)';
-    }
-    lastScroll = currentScroll;
-  }, { passive: true });
-
-  navbar.style.transition = 'opacity 0.4s, transform 0.4s';
+  // Navbar stays visible once shown — no auto-hide
+  navbar.style.transition = 'opacity 0.4s';
 
   // Burger toggle
   navBurger.addEventListener('click', () => {
