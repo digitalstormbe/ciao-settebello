@@ -60,13 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   framePaths.push('assets/frames/last.png');
 
+  const heroCanvasContainer = document.querySelector('.hero-canvas');
+
   function resizeCanvas() {
     if (!animCanvas || !ctx) return;
     const dpr = window.devicePixelRatio || 1;
-    animCanvas.width = window.innerWidth * dpr;
-    animCanvas.height = window.innerHeight * dpr;
-    animCanvas.style.width = window.innerWidth + 'px';
-    animCanvas.style.height = window.innerHeight + 'px';
+    // Use the .hero-canvas container dimensions (55% width) instead of window
+    const container = heroCanvasContainer || animCanvas.parentElement;
+    const w = container ? container.clientWidth : window.innerWidth;
+    const h = container ? container.clientHeight : window.innerHeight;
+    animCanvas.width = w * dpr;
+    animCanvas.height = h * dpr;
+    animCanvas.style.width = w + 'px';
+    animCanvas.style.height = h + 'px';
     if (currentFrame >= 0) drawFrame(currentFrame);
   }
 
@@ -166,73 +172,84 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Glassmorphism info cards — appear/disappear synced with animation frames
-    const card1 = document.getElementById('infoCard1');
-    const card2 = document.getElementById('infoCard2');
-    const card3 = document.getElementById('infoCard3');
+    // ---- Hero text reveal — synced with scroll ----
+    const heroLine1 = document.getElementById('heroLine1');
+    const heroLine2 = document.getElementById('heroLine2');
+    const heroSep = document.getElementById('heroSep');
+    const heroTagline = document.getElementById('heroTagline');
+    const heroDesc = document.getElementById('heroDesc');
+    const heroActions = document.getElementById('heroActions');
 
-    // Card 1: "Buffet italien à volonté" — fade in at 8%, fade out at 65%
-    if (card1) {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollAnimSection,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: true,
-        }
-      })
-      .fromTo(card1,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.08 },  // 0-8% = fade in
-        0.05
-      )
-      .to(card1,
-        { opacity: 0, y: -20, duration: 0.1 },  // 60-70% = fade out
-        0.60
+    const heroTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: scrollAnimSection,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+      }
+    });
+
+    // "MAMMA" — slide up + fade in (0-8%)
+    if (heroLine1) {
+      heroTL.fromTo(heroLine1,
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' },
+        0.02
       );
     }
 
-    // Card 2: "Boussu, Belgique" — fade in at 30%, fade out at 80%
-    if (card2) {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollAnimSection,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: true,
-        }
-      })
-      .fromTo(card2,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.08 },
-        0.25
-      )
-      .to(card2,
-        { opacity: 0, y: -20, duration: 0.1 },
-        0.75
+    // "MIA !" — slide up + fade in (6-14%)
+    if (heroLine2) {
+      heroTL.fromTo(heroLine2,
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' },
+        0.08
       );
     }
 
-    // Card 3: CTA "Réserver" — fade in at 55%, fade out at 92%
-    if (card3) {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollAnimSection,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: true,
-        }
-      })
-      .fromTo(card3,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.08 },
-        0.50
-      )
-      .to(card3,
-        { opacity: 0, y: -20, duration: 0.1 },
-        0.88
+    // Separator line — scale in from left (12-18%)
+    if (heroSep) {
+      heroTL.fromTo(heroSep,
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.05, ease: 'power2.out' },
+        0.14
       );
     }
+
+    // Tagline "À volonté, comme chez la Nonna." (18-28%)
+    if (heroTagline) {
+      heroTL.fromTo(heroTagline,
+        { opacity: 0, y: 30 },
+        { opacity: 0.9, y: 0, duration: 0.08, ease: 'power2.out' },
+        0.20
+      );
+    }
+
+    // Description text (28-38%)
+    if (heroDesc) {
+      heroTL.fromTo(heroDesc,
+        { opacity: 0, y: 20 },
+        { opacity: 0.65, y: 0, duration: 0.08, ease: 'power2.out' },
+        0.30
+      );
+    }
+
+    // CTA + location (35-48%)
+    if (heroActions) {
+      heroTL.fromTo(heroActions,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.08, ease: 'power2.out' },
+        0.38
+      );
+    }
+
+    // Everything fades out together near the end (80-95%)
+    heroTL.to('#heroText', {
+      opacity: 0,
+      y: -40,
+      duration: 0.12,
+      ease: 'power2.in',
+    }, 0.82);
   }
 
   // ========================================

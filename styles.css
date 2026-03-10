@@ -143,7 +143,7 @@ ul, ol { list-style: none; }
    ============================================ */
 .scroll-anim {
   position: relative;
-  height: 200vh;
+  height: 300vh;
   background: var(--red);
 }
 .scroll-anim__sticky {
@@ -153,6 +153,109 @@ ul, ol { list-style: none; }
   height: 100vh;
   display: flex;
   align-items: center;
+  overflow: hidden;
+}
+
+/* ---- Hero text (left side) ---- */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  width: 45%;
+  padding-left: var(--side-pad);
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-text__title {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.92;
+  margin-bottom: 24px;
+}
+.hero-text__line {
+  font-family: var(--font-display);
+  font-size: clamp(60px, 9vw, 140px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  display: block;
+  opacity: 0;
+}
+.hero-text__line--filled {
+  color: var(--cream);
+}
+.hero-text__line--outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--cream);
+  text-stroke: 2px var(--cream);
+}
+.hero-text__sep {
+  width: 60px;
+  height: 2px;
+  background: var(--cream);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform-origin: left;
+}
+.hero-text__tagline {
+  font-family: var(--font-script);
+  font-size: clamp(18px, 2.2vw, 28px);
+  color: var(--cream);
+  opacity: 0;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.hero-text__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--cream);
+  opacity: 0;
+  line-height: 1.6;
+  max-width: 340px;
+  margin-bottom: 32px;
+}
+.hero-text__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+}
+.hero-text__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 16px 36px;
+  border-radius: 50px;
+  background: var(--cream);
+  color: var(--red);
+  transition: background 0.3s, transform 0.3s;
+  width: fit-content;
+  cursor: pointer;
+}
+.hero-text__cta:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+.hero-text__location {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--cream);
+  opacity: 0.55;
+  letter-spacing: 0.03em;
+}
+
+/* ---- Animation canvas (right side) ---- */
+.hero-canvas {
+  position: relative;
+  width: 55%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
   overflow: hidden;
 }
@@ -160,6 +263,28 @@ ul, ol { list-style: none; }
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* ---- Mobile: stack vertically ---- */
+@media (max-width: 900px) {
+  .scroll-anim { height: 250vh; }
+  .scroll-anim__sticky {
+    flex-direction: column;
+  }
+  .hero-text {
+    width: 100%;
+    padding: 80px var(--side-pad) 20px;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-text__title { align-items: center; }
+  .hero-text__line { font-size: clamp(48px, 14vw, 80px); }
+  .hero-text__desc { max-width: 100%; }
+  .hero-text__actions { align-items: center; }
+  .hero-canvas {
+    width: 100%;
+    height: 50vh;
+  }
 }
 
 /* ============================================
@@ -273,94 +398,7 @@ ul, ol { list-style: none; }
   }
 }
 
-/* ============================================
-   GLASSMORPHISM INFO CARDS (on scroll animation)
-   ============================================ */
-.glass-card {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  color: var(--cream);
-  font-family: var(--font-body);
-  pointer-events: none;
-  will-change: opacity, transform;
-}
-.glass-card__icon {
-  font-size: 28px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.glass-card__text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.glass-card__text strong {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-.glass-card__text span {
-  font-size: 13px;
-  opacity: 0.8;
-}
-.glass-card__cta {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 12px 28px;
-  border-radius: 50px;
-  background: var(--cream);
-  color: var(--red);
-  pointer-events: auto;
-  transition: background 0.3s, transform 0.3s;
-  white-space: nowrap;
-}
-.glass-card__cta:hover {
-  background: #fff;
-  transform: scale(1.05);
-}
-
-/* Card positions */
-.glass-card--left {
-  bottom: 18%;
-  left: 6%;
-}
-.glass-card--right {
-  bottom: 18%;
-  right: 6%;
-}
-.glass-card--center {
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-@media (max-width: 768px) {
-  .glass-card {
-    padding: 10px 14px;
-    gap: 8px;
-    border-radius: 12px;
-  }
-  .glass-card__icon { font-size: 22px; }
-  .glass-card__text strong { font-size: 13px; }
-  .glass-card__text span { font-size: 11px; }
-  .glass-card--left { bottom: 14%; left: 4%; }
-  .glass-card--right { bottom: 14%; right: 4%; }
-  .glass-card--center { bottom: 5%; }
-  .glass-card__cta { font-size: 12px; padding: 10px 20px; }
-}
+/* (Glass cards removed — replaced by hero-text section) */
 
 /* ============================================
    NAVIGATION

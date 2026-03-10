@@ -21,7 +21,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
 
@@ -42,33 +42,30 @@
     </div>
   </div>
 
-  <!-- ==================== SCROLL ANIMATION — Canvas ==================== -->
+  <!-- ==================== SCROLL ANIMATION — Split Hero ==================== -->
   <section id="scrollAnimation" class="scroll-anim">
     <div class="scroll-anim__sticky">
-      <canvas id="animCanvas" class="scroll-anim__canvas"></canvas>
 
-      <!-- Glassmorphism info cards -->
-      <div id="infoCard1" class="glass-card glass-card--left" style="opacity:0;">
-        <span class="glass-card__icon">🍕</span>
-        <div class="glass-card__text">
-          <strong>Buffet italien</strong>
-          <span>À volonté</span>
+      <!-- LEFT: Hero text content -->
+      <div class="hero-text" id="heroText">
+        <div class="hero-text__title">
+          <span class="hero-text__line hero-text__line--filled" id="heroLine1">MAMMA</span>
+          <span class="hero-text__line hero-text__line--outline" id="heroLine2">MIA !</span>
+        </div>
+        <div class="hero-text__sep" id="heroSep"></div>
+        <p class="hero-text__tagline" id="heroTagline">À volonté,<br>comme chez la Nonna.</p>
+        <p class="hero-text__desc" id="heroDesc">Buffet italien à volonté. Pizzas, pâtes fraîches, grillades et dolci.</p>
+        <div class="hero-text__actions" id="heroActions">
+          <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="hero-text__cta">Réserver une table</a>
+          <span class="hero-text__location">📍 Boussu, Belgique</span>
         </div>
       </div>
 
-      <div id="infoCard2" class="glass-card glass-card--right" style="opacity:0;">
-        <span class="glass-card__icon">📍</span>
-        <div class="glass-card__text">
-          <strong>Boussu</strong>
-          <span>Belgique</span>
-        </div>
+      <!-- RIGHT: Animation canvas -->
+      <div class="hero-canvas">
+        <canvas id="animCanvas" class="scroll-anim__canvas"></canvas>
       </div>
 
-      <div id="infoCard3" class="glass-card glass-card--center" style="opacity:0;">
-        <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="glass-card__cta">
-          Réserver une table
-        </a>
-      </div>
     </div>
   </section>
 
@@ -473,6 +470,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>
