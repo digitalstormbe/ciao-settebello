@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = animCanvas ? animCanvas.getContext('2d') : null;
   const scrollAnimSection = document.getElementById('scrollAnimation');
   const navbar = document.getElementById('navbar');
-  const FRAME_COUNT = 49;
+  const FRAME_COUNT = 73;
   const framePaths = [];
   const frameImages = new Array(FRAME_COUNT);
   let currentFrame = -1;
 
-  // Build frame paths: first.png → frame_0002—0048.webp → last.png
+  // Build frame paths: first.png → frame_0002—0072.webp → last.png
   framePaths.push('assets/frames/first.png');
-  for (let i = 2; i <= 48; i++) {
+  for (let i = 2; i <= 72; i++) {
     framePaths.push('assets/frames/frame_' + String(i).padStart(4, '0') + '.webp');
   }
   framePaths.push('assets/frames/last.png');
