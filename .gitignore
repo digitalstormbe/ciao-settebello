@@ -1,0 +1,20 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude
+.claude/
+
+# Docs & references (not needed for deploy)
+docs/
+references/
+
+# Node
+node_modules/
+
+# Temp
+*.log
