@@ -21,7 +21,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
 
@@ -31,41 +31,36 @@
   <!-- ==================== SCROLL PROGRESS ==================== -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- ==================== LOADER (shows while frames preload) ==================== -->
+  <!-- ==================== LOADER ==================== -->
   <div id="loader" class="loader">
     <div class="loader__inner">
       <img src="assets/frames/first.png" alt="" class="loader__hero-img">
       <div class="loader__bar">
         <div class="loader__progress" id="loaderProgress"></div>
       </div>
-      <p class="loader__hint">Chargement…</p>
+      <p class="loader__hint">Chargement...</p>
     </div>
   </div>
 
-  <!-- ==================== SCROLL ANIMATION — Split Hero ==================== -->
+  <!-- ==================== SCROLL ANIMATION — Full Screen Hero ==================== -->
   <section id="scrollAnimation" class="scroll-anim">
     <div class="scroll-anim__sticky">
-
-      <!-- LEFT: Hero text content -->
       <div class="hero-text" id="heroText">
         <div class="hero-text__title">
           <span class="hero-text__line hero-text__line--filled" id="heroLine1">MAMMA</span>
           <span class="hero-text__line hero-text__line--outline" id="heroLine2">MIA !</span>
         </div>
         <div class="hero-text__sep" id="heroSep"></div>
-        <p class="hero-text__tagline" id="heroTagline">À volonté,<br>comme chez la Nonna.</p>
-        <p class="hero-text__desc" id="heroDesc">Buffet italien à volonté. Pizzas, pâtes fraîches, grillades et dolci.</p>
+        <p class="hero-text__tagline" id="heroTagline">A volonte,<br>comme chez la Nonna.</p>
+        <p class="hero-text__desc" id="heroDesc">Buffet italien a volonte. Pizzas, pates fraiches, grillades et dolci.</p>
         <div class="hero-text__actions" id="heroActions">
-          <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="hero-text__cta">Réserver une table</a>
-          <span class="hero-text__location">📍 Boussu, Belgique</span>
+          <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="hero-text__cta">Reserver une table</a>
+          <span class="hero-text__location">Boussu, Belgique</span>
         </div>
       </div>
-
-      <!-- RIGHT: Animation canvas -->
       <div class="hero-canvas">
         <canvas id="animCanvas" class="scroll-anim__canvas"></canvas>
       </div>
-
     </div>
   </section>
 
@@ -79,18 +74,13 @@
   <!-- ==================== NAVIGATION ==================== -->
   <nav id="navbar" class="nav">
     <div class="nav__bar">
-      <!-- Left: page links -->
       <div class="nav__left">
         <a href="#concept" class="nav__link">Concept</a>
         <a href="#buffet" class="nav__link">Buffet</a>
         <a href="#galerie" class="nav__link">Galerie</a>
         <a href="#infos" class="nav__link">Infos</a>
       </div>
-
-      <!-- Center: brand name -->
       <a href="#" class="nav__brand" data-magnetic>SETTEBELLO</a>
-
-      <!-- Right: socials + CTA -->
       <div class="nav__right">
         <div class="nav__socials">
           <a href="https://www.facebook.com/ciaosettebello" target="_blank" rel="noopener" aria-label="Facebook" class="nav__social" data-magnetic>
@@ -103,14 +93,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
           </a>
         </div>
-        <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="nav__cta" data-magnetic>Réserver</a>
+        <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="nav__cta" data-magnetic>Reserver</a>
       </div>
-
-      <!-- Burger (mobile) -->
       <button class="nav__burger" id="navBurger" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
@@ -133,87 +119,89 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
         </a>
       </div>
-      <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="mobile-menu__cta">Réserver une table</a>
+      <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="mobile-menu__cta">Reserver une table</a>
     </div>
   </div>
 
-  <!-- ==================== WAVE TRANSITION (animation → marquee) ==================== -->
+  <!-- ==================== WAVE TRANSITION ==================== -->
   <div class="wave-transition">
     <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <path d="M0 60C180 100 360 20 540 60C720 100 900 20 1080 60C1260 100 1350 20 1440 50V120H0V60Z" fill="#FFF5E6"/>
     </svg>
   </div>
 
-  <!-- ==================== MARQUEE — Double rows ==================== -->
+  <!-- ==================== MARQUEE ==================== -->
   <section class="marquee-section">
     <div class="marquee" id="marquee1">
       <div class="marquee__track">
         <div class="marquee__content">
-          <span>PIZZA</span><span class="marquee__dot">●</span>
-          <span>PASTA</span><span class="marquee__dot">●</span>
-          <span>ANTIPASTI</span><span class="marquee__dot">●</span>
-          <span>GRILLADES</span><span class="marquee__dot">●</span>
-          <span>DOLCI</span><span class="marquee__dot">●</span>
-          <span>BUFFET À VOLONTÉ</span><span class="marquee__dot">●</span>
-          <span>TIRAMISU</span><span class="marquee__dot">●</span>
-          <span>CANNOLI</span><span class="marquee__dot">●</span>
+          <span>PIZZA</span><span class="marquee__dot"></span>
+          <span>PASTA</span><span class="marquee__dot"></span>
+          <span>ANTIPASTI</span><span class="marquee__dot"></span>
+          <span>GRILLADES</span><span class="marquee__dot"></span>
+          <span>DOLCI</span><span class="marquee__dot"></span>
+          <span>BUFFET A VOLONTE</span><span class="marquee__dot"></span>
+          <span>TIRAMISU</span><span class="marquee__dot"></span>
+          <span>CANNOLI</span><span class="marquee__dot"></span>
         </div>
         <div class="marquee__content" aria-hidden="true">
-          <span>PIZZA</span><span class="marquee__dot">●</span>
-          <span>PASTA</span><span class="marquee__dot">●</span>
-          <span>ANTIPASTI</span><span class="marquee__dot">●</span>
-          <span>GRILLADES</span><span class="marquee__dot">●</span>
-          <span>DOLCI</span><span class="marquee__dot">●</span>
-          <span>BUFFET À VOLONTÉ</span><span class="marquee__dot">●</span>
-          <span>TIRAMISU</span><span class="marquee__dot">●</span>
-          <span>CANNOLI</span><span class="marquee__dot">●</span>
+          <span>PIZZA</span><span class="marquee__dot"></span>
+          <span>PASTA</span><span class="marquee__dot"></span>
+          <span>ANTIPASTI</span><span class="marquee__dot"></span>
+          <span>GRILLADES</span><span class="marquee__dot"></span>
+          <span>DOLCI</span><span class="marquee__dot"></span>
+          <span>BUFFET A VOLONTE</span><span class="marquee__dot"></span>
+          <span>TIRAMISU</span><span class="marquee__dot"></span>
+          <span>CANNOLI</span><span class="marquee__dot"></span>
         </div>
       </div>
     </div>
     <div class="marquee marquee--reverse" id="marquee2">
       <div class="marquee__track marquee__track--reverse">
         <div class="marquee__content">
-          <span class="marquee__outline">NAPOLETANA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">MOZZARELLA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">BRUSCHETTA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">PANNA COTTA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">ARANCINI</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">FOCACCIA</span><span class="marquee__dot">●</span>
+          <span class="marquee__outline">NAPOLETANA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">MOZZARELLA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">BRUSCHETTA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">PANNA COTTA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">ARANCINI</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">FOCACCIA</span><span class="marquee__dot"></span>
         </div>
         <div class="marquee__content" aria-hidden="true">
-          <span class="marquee__outline">NAPOLETANA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">MOZZARELLA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">BRUSCHETTA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">PANNA COTTA</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">ARANCINI</span><span class="marquee__dot">●</span>
-          <span class="marquee__outline">FOCACCIA</span><span class="marquee__dot">●</span>
+          <span class="marquee__outline">NAPOLETANA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">MOZZARELLA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">BRUSCHETTA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">PANNA COTTA</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">ARANCINI</span><span class="marquee__dot"></span>
+          <span class="marquee__outline">FOCACCIA</span><span class="marquee__dot"></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== CONCEPT ==================== -->
+  <!-- ==================== CONCEPT — Immersive Story ==================== -->
   <section id="concept" class="concept">
     <div class="concept__inner">
-      <div class="concept__header">
-        <p class="concept__script" data-reveal>l'Italie authentique</p>
+      <!-- Top: Big intro -->
+      <div class="concept__intro">
+        <p class="concept__eyebrow" data-reveal>l'Italie authentique</p>
         <h2 class="concept__title" data-split-words>UNE TABLE,<br>MILLE SAVEURS</h2>
       </div>
-      <div class="concept__content">
-        <div class="concept__visual-wrap">
-          <div class="concept__visual" data-parallax-img>
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Cuisine italienne authentique" class="concept__img">
+
+      <!-- Showcase: Image + Text side by side -->
+      <div class="concept__showcase">
+        <div class="concept__img-wrap">
+          <div class="concept__img-reveal" data-clip-reveal>
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Cuisine italienne authentique" loading="lazy">
           </div>
-          <!-- Sticker on image -->
           <div class="sticker sticker--concept" data-speed="0.3">
             <span>FAIT MAISON</span>
           </div>
         </div>
-        <div class="concept__text">
+        <div class="concept__text-col">
           <p class="concept__desc" data-reveal>
-            Bienvenue au seul buffet italien à volonté en Belgique. Chez Ciao Settebello,
-            nous avons apporté un morceau de l'Italie directement à Boussu. Notre buffet
-            vous invite à explorer les délices de la cuisine italienne dans une atmosphère
+            Bienvenue au seul buffet italien a volonte en Belgique. Chez Ciao Settebello,
+            nous avons apporte un morceau de l'Italie directement a Boussu. Notre buffet
+            vous invite a explorer les delices de la cuisine italienne dans une atmosphere
             chaleureuse et conviviale.
           </p>
           <div class="concept__tags" data-reveal>
@@ -223,165 +211,211 @@
           </div>
         </div>
       </div>
-      <div class="concept__badges">
-        <div class="concept__badge" data-reveal data-tilt>
-          <span class="concept__badge-num">01</span>
-          <h3 class="concept__badge-title">BUFFET À VOLONTÉ</h3>
-          <p class="concept__badge-desc">Servez-vous à volonté parmi plus de 200 plats</p>
+
+      <!-- Value Pillars -->
+      <div class="concept__pillars">
+        <div class="concept__pillar" data-reveal data-tilt>
+          <div class="concept__pillar-num">01</div>
+          <div class="concept__pillar-line"></div>
+          <h3 class="concept__pillar-title">BUFFET<br>A VOLONTE</h3>
+          <p class="concept__pillar-desc">Servez-vous a volonte parmi plus de 200 plats italiens authentiques</p>
         </div>
-        <div class="concept__badge" data-reveal data-tilt>
-          <span class="concept__badge-num">02</span>
-          <h3 class="concept__badge-title">FAIT MAISON</h3>
-          <p class="concept__badge-desc">Recettes italiennes authentiques préparées sur place</p>
+        <div class="concept__pillar" data-reveal data-tilt>
+          <div class="concept__pillar-num">02</div>
+          <div class="concept__pillar-line"></div>
+          <h3 class="concept__pillar-title">FAIT<br>MAISON</h3>
+          <p class="concept__pillar-desc">Recettes traditionnelles preparees sur place chaque jour</p>
         </div>
-        <div class="concept__badge" data-reveal data-tilt>
-          <span class="concept__badge-num">03</span>
-          <h3 class="concept__badge-title">AMBIANCE FAMIGLIA</h3>
-          <p class="concept__badge-desc">Un cadre chaleureux comme à la maison en Italie</p>
+        <div class="concept__pillar" data-reveal data-tilt>
+          <div class="concept__pillar-num">03</div>
+          <div class="concept__pillar-line"></div>
+          <h3 class="concept__pillar-title">AMBIANCE<br>FAMIGLIA</h3>
+          <p class="concept__pillar-desc">Un cadre chaleureux comme a la maison en Italie</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== BUFFET ==================== -->
+  <!-- ==================== BUFFET — Horizontal Scroll Showcase ==================== -->
   <section id="buffet" class="buffet">
-    <div class="buffet__wave-top">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V20C240 0 480 40 720 20C960 0 1200 40 1440 20V60H0Z" fill="#FFF5E6"/></svg>
-    </div>
-
     <!-- Large background text -->
     <div class="buffet__bg-text" aria-hidden="true">BUFFET</div>
 
-    <div class="buffet__inner">
-      <div class="buffet__header">
-        <p class="buffet__script" data-reveal>un voyage culinaire</p>
-        <h2 class="buffet__title" data-split-words>NOTRE BUFFET</h2>
+    <div class="buffet__header">
+      <p class="buffet__eyebrow" data-reveal>un voyage culinaire</p>
+      <h2 class="buffet__title" data-split-words>NOTRE BUFFET</h2>
+    </div>
+
+    <div class="buffet__carousel-wrap">
+      <div class="buffet__carousel" id="buffetCarousel">
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=800&q=80" alt="Antipasti italiens" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">01</span>
+            <h3 class="buffet__slide-name">Antipasti</h3>
+            <p class="buffet__slide-desc">Bruschette, caprese, legumes grilles et charcuterie italienne</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Pizza Napoletana" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">02</span>
+            <h3 class="buffet__slide-name">Pizze</h3>
+            <p class="buffet__slide-desc">Cuites a la minute dans notre four traditionnel a bois</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&q=80" alt="Pasta Fresca" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">03</span>
+            <h3 class="buffet__slide-name">Primi Piatti</h3>
+            <p class="buffet__slide-desc">Pates fraiches preparees dans la meule de parmesan</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80" alt="Grillades" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">04</span>
+            <h3 class="buffet__slide-name">Secondi</h3>
+            <p class="buffet__slide-desc">Viandes grillees et saveurs mediterraneennes a la braise</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80" alt="Desserts italiens" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">05</span>
+            <h3 class="buffet__slide-name">Dolci</h3>
+            <p class="buffet__slide-desc">Tiramisu, cannoli, panna cotta et fontaine de chocolat</p>
+          </div>
+        </article>
       </div>
-      <div class="buffet__grid">
-        <div class="buffet__card" data-magnetic data-tilt>
-          <div class="buffet__card-img">
-            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=500&q=80" alt="Antipasti italiens" loading="lazy">
-          </div>
-          <h3 class="buffet__card-name">Antipasti</h3>
-          <p class="buffet__card-desc">Bruschette, caprese, légumes grillés</p>
-        </div>
-        <div class="buffet__card" data-magnetic data-tilt>
-          <div class="buffet__card-img">
-            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&q=80" alt="Pizza Napoletana" loading="lazy">
-          </div>
-          <h3 class="buffet__card-name">Pizze</h3>
-          <p class="buffet__card-desc">Faites à la minute au four traditionnel</p>
-        </div>
-        <div class="buffet__card" data-magnetic data-tilt>
-          <div class="buffet__card-img">
-            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=500&q=80" alt="Pasta Fresca" loading="lazy">
-          </div>
-          <h3 class="buffet__card-name">Primi Piatti</h3>
-          <p class="buffet__card-desc">Pâtes fraîches préparées dans la meule</p>
-        </div>
-        <div class="buffet__card" data-magnetic data-tilt>
-          <div class="buffet__card-img">
-            <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=500&q=80" alt="Grillades" loading="lazy">
-          </div>
-          <h3 class="buffet__card-name">Secondi</h3>
-          <p class="buffet__card-desc">Viandes grillées, saveurs méditerranéennes</p>
-        </div>
-        <div class="buffet__card" data-magnetic data-tilt>
-          <div class="buffet__card-img">
-            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&q=80" alt="Desserts italiens" loading="lazy">
-          </div>
-          <h3 class="buffet__card-name">Dolci</h3>
-          <p class="buffet__card-desc">Tiramisu, cannoli, panna cotta</p>
-        </div>
-      </div>
+    </div>
+
+    <div class="buffet__footer">
       <a href="#" class="buffet__cta" data-magnetic>
-        <span>DÉCOUVRIR LA CARTE</span>
+        <span>DECOUVRIR LA CARTE</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
       </a>
     </div>
-    <div class="buffet__wave-bottom">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 0V40C240 60 480 20 720 40C960 60 1200 20 1440 40V0H0Z" fill="#FFF5E6"/></svg>
-    </div>
   </section>
 
-  <!-- ==================== GALERIE — Horizontal Scroll ==================== -->
+  <!-- ==================== GALERIE — Staggered Grid ==================== -->
   <section id="galerie" class="galerie">
-    <div class="galerie__header">
-      <h2 class="galerie__title" data-split-words>BENVENUTI A CASA</h2>
-      <p class="galerie__subtitle" data-reveal>Découvrez l'univers Settebello</p>
-    </div>
-    <div class="galerie__track-wrap">
-      <div class="galerie__track" id="galerieTrack">
-        <div class="galerie__item" data-parallax-img>
-          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Intérieur du restaurant" loading="lazy">
-          <span class="galerie__label">L'ambiance</span>
+    <div class="galerie__inner">
+      <div class="galerie__header">
+        <p class="galerie__eyebrow" data-reveal>Decouvrez l'univers</p>
+        <h2 class="galerie__title" data-split-words>BENVENUTI<br>A CASA</h2>
+      </div>
+
+      <div class="galerie__grid">
+        <div class="galerie__col galerie__col--left">
+          <div class="galerie__item galerie__item--tall" data-clip-reveal>
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Interieur du restaurant" loading="lazy">
+            <div class="galerie__overlay">
+              <span class="galerie__label">L'ambiance</span>
+            </div>
+          </div>
+          <div class="galerie__item" data-clip-reveal>
+            <img src="https://images.unsplash.com/photo-1579684947550-22e945225d9a?w=800&q=80" alt="Pates fraiches" loading="lazy">
+            <div class="galerie__overlay">
+              <span class="galerie__label">Pasta fresca</span>
+            </div>
+          </div>
         </div>
-        <div class="galerie__item galerie__item--lg" data-parallax-img>
-          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Pizza sortant du four" loading="lazy">
-          <span class="galerie__label">Nos pizzas</span>
+        <div class="galerie__col galerie__col--right">
+          <div class="galerie__item" data-clip-reveal>
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Pizza sortant du four" loading="lazy">
+            <div class="galerie__overlay">
+              <span class="galerie__label">Nos pizzas</span>
+            </div>
+          </div>
+          <div class="galerie__item galerie__item--tall" data-clip-reveal>
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Le buffet" loading="lazy">
+            <div class="galerie__overlay">
+              <span class="galerie__label">Le buffet</span>
+            </div>
+          </div>
         </div>
-        <div class="galerie__item" data-parallax-img>
-          <img src="https://images.unsplash.com/photo-1579684947550-22e945225d9a?w=800&q=80" alt="Pâtes fraîches" loading="lazy">
-          <span class="galerie__label">Pasta fresca</span>
-        </div>
-        <div class="galerie__item galerie__item--lg" data-parallax-img>
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Le buffet" loading="lazy">
-          <span class="galerie__label">Le buffet</span>
-        </div>
-        <div class="galerie__item" data-parallax-img>
-          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&q=80" alt="Dessert tiramisu" loading="lazy">
-          <span class="galerie__label">Dolci</span>
-        </div>
-        <div class="galerie__item galerie__item--lg" data-parallax-img>
-          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80" alt="Ambiance conviviale" loading="lazy">
-          <span class="galerie__label">Famiglia</span>
+        <div class="galerie__col galerie__col--center">
+          <div class="galerie__item galerie__item--wide" data-clip-reveal>
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&q=80" alt="Dessert tiramisu" loading="lazy">
+            <div class="galerie__overlay">
+              <span class="galerie__label">Dolci</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== STATS / AVIS ==================== -->
+  <!-- ==================== STATS / AVIS — Dark Cinematic ==================== -->
   <section class="stats">
-    <!-- Large background watermark -->
-    <div class="stats__watermark" aria-hidden="true">4.5★</div>
+    <div class="stats__bg-text" aria-hidden="true">SETTEBELLO</div>
+
     <div class="stats__inner">
-      <div class="stats__numbers">
-        <div class="stats__item" data-reveal>
+      <div class="stats__counters">
+        <div class="stats__counter" data-reveal>
           <span class="stats__value" data-count="200">0</span>
           <span class="stats__plus">+</span>
-          <span class="stats__label">plats au buffet</span>
+          <div class="stats__counter-label">plats au buffet</div>
         </div>
-        <div class="stats__item" data-reveal>
+        <div class="stats__counter" data-reveal>
           <span class="stats__value" data-count="10">0</span>
-          <span class="stats__label">ans d'expérience</span>
+          <div class="stats__counter-label">ans d'experience</div>
         </div>
-        <div class="stats__item" data-reveal>
+        <div class="stats__counter" data-reveal>
           <span class="stats__value">4.5</span>
-          <span class="stats__star">★</span>
-          <span class="stats__label">TripAdvisor</span>
+          <span class="stats__star">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <div class="stats__counter-label">TripAdvisor</div>
         </div>
-        <div class="stats__item" data-reveal>
+        <div class="stats__counter" data-reveal>
           <span class="stats__value" data-count="1000">0</span>
           <span class="stats__plus">+</span>
-          <span class="stats__label">clients par semaine</span>
+          <div class="stats__counter-label">clients par semaine</div>
         </div>
       </div>
+
       <div class="stats__divider"></div>
+
       <div class="stats__reviews">
         <div class="stats__review" data-reveal>
-          <span class="stats__quote">"</span>
-          <p>Le meilleur buffet italien que j'ai jamais testé ! La qualité des produits est incroyable et le choix est immense.</p>
-          <div class="stats__review-footer">
-            <div class="stats__stars">★★★★★</div>
-            <span class="stats__author">— Marie D., Google Reviews</span>
+          <div class="stats__quote-mark">&ldquo;</div>
+          <blockquote class="stats__quote-text">Le meilleur buffet italien que j'ai jamais teste ! La qualite des produits est incroyable et le choix est immense.</blockquote>
+          <div class="stats__review-meta">
+            <div class="stats__stars" aria-label="5 etoiles">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="stats__author">Marie D. &mdash; Google Reviews</span>
           </div>
         </div>
         <div class="stats__review" data-reveal>
-          <span class="stats__quote">"</span>
-          <p>Ambiance familiale, cuisine authentique. On se croirait vraiment en Italie ! Les pizzas sont à tomber.</p>
-          <div class="stats__review-footer">
-            <div class="stats__stars">★★★★★</div>
-            <span class="stats__author">— Thomas L., TripAdvisor</span>
+          <div class="stats__quote-mark">&ldquo;</div>
+          <blockquote class="stats__quote-text">Ambiance familiale, cuisine authentique. On se croirait vraiment en Italie ! Les pizzas sont a tomber.</blockquote>
+          <div class="stats__review-meta">
+            <div class="stats__stars" aria-label="5 etoiles">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="stats__author">Thomas L. &mdash; TripAdvisor</span>
           </div>
         </div>
       </div>
@@ -391,85 +425,98 @@
   <!-- ==================== INFOS PRATIQUES ==================== -->
   <section id="infos" class="infos">
     <div class="infos__inner">
-      <h2 class="infos__title" data-split-words>VENEZ<br>NOUS VOIR</h2>
+      <div class="infos__header">
+        <p class="infos__eyebrow" data-reveal>informations pratiques</p>
+        <h2 class="infos__title" data-split-words>VENEZ<br>NOUS VOIR</h2>
+      </div>
+
       <div class="infos__grid">
         <div class="infos__card" data-reveal data-tilt>
           <div class="infos__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
-          <h3>Adresse</h3>
-          <p>305A, Rue de Valenciennes<br>7300 Boussu, Belgique</p>
+          <h3 class="infos__card-title">Adresse</h3>
+          <p class="infos__card-text">305A, Rue de Valenciennes<br>7300 Boussu, Belgique</p>
         </div>
         <div class="infos__card" data-reveal data-tilt>
           <div class="infos__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
-          <h3>Téléphone</h3>
-          <p><a href="tel:+32493365188">0493 36 51 88</a></p>
+          <h3 class="infos__card-title">Telephone</h3>
+          <p class="infos__card-text"><a href="tel:+32493365188">0493 36 51 88</a></p>
         </div>
         <div class="infos__card" data-reveal data-tilt>
           <div class="infos__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <h3>Horaires</h3>
-          <p>
-            Jeudi : 18h30 — 22h30<br>
-            Vendredi — Samedi : 18h — 23h<br>
-            Dimanche : 12h — 15h30 &amp; 18h — 22h30
+          <h3 class="infos__card-title">Horaires</h3>
+          <p class="infos__card-text">
+            Jeudi : 18h30 &mdash; 22h30<br>
+            Ven &mdash; Sam : 18h &mdash; 23h<br>
+            Dimanche : 12h &mdash; 15h30<br>
+            &amp; 18h &mdash; 22h30
           </p>
         </div>
       </div>
+
       <div class="infos__map" data-reveal>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.5!2d3.793!3d50.432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c25!2s0x47c25!5e0!3m2!1sfr!2sbe!4v1709000000000!5m2!1sfr!2sbe" width="100%" height="350" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation Ciao Settebello"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.5!2d3.793!3d50.432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c25!2s0x47c25!5e0!3m2!1sfr!2sbe!4v1709000000000!5m2!1sfr!2sbe" width="100%" height="400" style="border:0; border-radius: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation Ciao Settebello"></iframe>
       </div>
     </div>
   </section>
 
-  <!-- ==================== CTA FINAL + FOOTER ==================== -->
+  <!-- ==================== FOOTER — Bold CTA + Bottom ==================== -->
   <footer class="footer">
-    <div class="footer__cta">
-      <div class="footer__deco footer__deco--1">✦</div>
-      <div class="footer__deco footer__deco--2">★</div>
-      <div class="footer__deco footer__deco--3">✦</div>
+    <div class="footer__cta-section">
+      <!-- Floating deco -->
+      <div class="footer__deco footer__deco--1" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 4l5.5 14.5L44 24l-14.5 5.5L24 44l-5.5-14.5L4 24l14.5-5.5z" fill="currentColor"/></svg>
+      </div>
+      <div class="footer__deco footer__deco--2" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><path d="M24 4l5.5 14.5L44 24l-14.5 5.5L24 44l-5.5-14.5L4 24l14.5-5.5z" fill="currentColor"/></svg>
+      </div>
+      <div class="footer__deco footer__deco--3" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="6" fill="currentColor"/></svg>
+      </div>
 
-      <!-- Rotating sticker -->
       <div class="sticker sticker--footer" data-speed="-0.3">
         <span>100% ITALIEN</span>
       </div>
 
-      <p class="footer__script" data-reveal>réservez votre table</p>
-      <h2 class="footer__title">
-        <span class="footer__title-fill" data-split-words>PRÊT À VOUS</span>
+      <p class="footer__script" data-reveal>reservez votre table</p>
+      <h2 class="footer__big-title">
+        <span class="footer__title-fill" data-split-words>PRET A VOUS</span>
         <br>
-        <span class="footer__title-outline" data-split-words>RÉGALER ?</span>
+        <span class="footer__title-outline" data-split-words>REGALER ?</span>
       </h2>
       <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="footer__btn" data-magnetic>
-        <span>RÉSERVER MAINTENANT</span>
+        <span>RESERVER MAINTENANT</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
       </a>
     </div>
+
     <div class="footer__bottom">
-      <div class="footer__inner">
+      <div class="footer__bottom-inner">
         <div class="footer__brand">
           <img src="assets/logo-main.png" alt="Ciao Settebello" class="footer__logo-img">
           <span class="footer__logo-text">SETTEBELLO</span>
         </div>
         <div class="footer__socials">
           <a href="https://www.facebook.com/ciaosettebello" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social" data-magnetic>
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
           <a href="https://www.instagram.com/ciaosettebello" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social" data-magnetic>
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
           </a>
           <a href="https://www.tiktok.com/@ciaosettebello" target="_blank" rel="noopener" aria-label="TikTok" class="footer__social" data-magnetic>
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
           </a>
         </div>
-        <p class="footer__copy">&copy; 2025 Ciao Settebello — Tous droits réservés</p>
+        <p class="footer__copy">&copy; 2025 Ciao Settebello &mdash; Tous droits reserves</p>
       </div>
     </div>
   </footer>
 
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>
