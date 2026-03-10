@@ -8,8 +8,9 @@
 
   <!-- Preload critical assets -->
   <link rel="preload" href="assets/fonts/Amfibia-BlackNarrow.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="assets/frames/first.png" as="image">
-  <link rel="preload" href="assets/frames/last.png" as="image">
+  <link rel="preload" href="assets/frames/1.png" as="image">
+  <link rel="preload" href="assets/frames/2.png" as="image">
+  <link rel="preload" href="assets/logo-main.png" as="image">
 
   <!-- GSAP -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
@@ -21,7 +22,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
 
@@ -34,7 +35,7 @@
   <!-- ==================== LOADER ==================== -->
   <div id="loader" class="loader">
     <div class="loader__inner">
-      <img src="assets/frames/first.png" alt="" class="loader__hero-img">
+      <img src="assets/logo-main.png" alt="Ciao Settebello" class="loader__logo">
       <div class="loader__bar">
         <div class="loader__progress" id="loaderProgress"></div>
       </div>
@@ -46,16 +47,30 @@
   <section id="scrollAnimation" class="scroll-anim">
     <div class="scroll-anim__sticky">
       <div class="hero-text" id="heroText">
+        <div class="hero-text__badge" id="heroBadge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          <span>Le seul buffet italien a volonte en Belgique</span>
+        </div>
         <div class="hero-text__title">
           <span class="hero-text__line hero-text__line--filled" id="heroLine1">MAMMA</span>
-          <span class="hero-text__line hero-text__line--outline" id="heroLine2">MIA !</span>
+          <span class="hero-text__line hero-text__line--filled" id="heroLine2">MIA</span>
+          <span class="hero-text__line hero-text__line--outline" id="heroLine3">CHE BONTA!</span>
         </div>
+        <p class="hero-text__script" id="heroScript">il buffet all'italiana</p>
         <div class="hero-text__sep" id="heroSep"></div>
-        <p class="hero-text__tagline" id="heroTagline">A volonte,<br>comme chez la Nonna.</p>
-        <p class="hero-text__desc" id="heroDesc">Buffet italien a volonte. Pizzas, pates fraiches, grillades et dolci.</p>
+        <p class="hero-text__desc" id="heroDesc">
+          Pizze, pasta fresca, grillades &amp; dolci.
+          <br>Plus de 200 plats faits maison, a volonte.
+        </p>
         <div class="hero-text__actions" id="heroActions">
-          <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="hero-text__cta">Reserver une table</a>
-          <span class="hero-text__location">Boussu, Belgique</span>
+          <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="hero-text__cta">
+            <span>Reserver une table</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+          <div class="hero-text__meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Boussu, Belgique</span>
+          </div>
         </div>
       </div>
       <div class="hero-canvas">
@@ -517,6 +532,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=16"></script>
+  <script src="script.js?v=17"></script>
 </body>
 </html>
