@@ -144,6 +144,24 @@ ul, ol { list-style: none; }
   width: 100%; height: 100vh;
   overflow: hidden;
 }
+/* --- Shine sweep keyframe for outline text --- */
+@keyframes heroShine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes heroGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255,245,230,0.15)); }
+  50% { filter: drop-shadow(0 0 20px rgba(255,245,230,0.35)); }
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,245,230,0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(255,245,230,0); }
+}
+@keyframes eyebrowLineExpand {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
 .hero-text {
   position: absolute;
   top: 0; left: 0;
@@ -155,30 +173,48 @@ ul, ol { list-style: none; }
   flex-direction: column;
   justify-content: center;
 }
+
+/* --- Eyebrow with decorative lines --- */
 .hero-text__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   font-family: var(--font-body);
   font-size: 11px;
   color: var(--cream);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-weight: 500;
-  margin-bottom: 32px;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  margin-bottom: 36px;
   opacity: 0;
+}
+.hero-text__eyebrow-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cream), transparent);
+  transform-origin: center;
+  opacity: 0.6;
+}
+.hero-text__eyebrow-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .hero-text__eyebrow svg {
   color: var(--cream);
   flex-shrink: 0;
-  opacity: 0.7;
+  opacity: 0.9;
+  animation: heroGlow 3s ease-in-out infinite;
 }
+
+/* --- Title: MAMMA + MIA ! --- */
 .hero-text__title {
   display: flex;
   flex-direction: column;
   line-height: 0.85;
-  margin-bottom: 24px;
-  perspective: 600px;
+  margin-bottom: 28px;
+  perspective: 800px;
 }
 .hero-text__line {
   font-family: var(--font-display);
@@ -189,30 +225,62 @@ ul, ol { list-style: none; }
   display: block;
   opacity: 0;
 }
+
+/* MAMMA — solid cream with cinematic depth shadow */
 .hero-text__line--filled {
   color: var(--cream);
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.3),
+    0 8px 24px rgba(0,0,0,0.2),
+    0 0 80px rgba(255,245,230,0.08);
 }
+
+/* MIA ! — outline with animated gradient shine sweep */
 .hero-text__line--outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--cream);
   font-size: clamp(68px, 11vw, 180px);
   letter-spacing: -0.04em;
+  position: relative;
+  background: linear-gradient(
+    120deg,
+    var(--cream) 0%,
+    var(--cream) 35%,
+    #fff 50%,
+    var(--cream) 65%,
+    var(--cream) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px rgba(255,245,230,0.7);
+  animation: heroShine 4s ease-in-out infinite;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15));
 }
+
+/* --- Separator with glow --- */
 .hero-text__sep {
-  width: 48px; height: 2px;
-  background: var(--cream);
-  margin-bottom: 22px;
+  width: 56px; height: 2px;
+  background: linear-gradient(90deg, var(--cream), rgba(255,245,230,0.3));
+  margin-bottom: 24px;
   opacity: 0;
   transform-origin: left;
+  box-shadow: 0 0 12px rgba(255,245,230,0.2);
 }
+
+/* --- Tagline — elegant uppercase script --- */
 .hero-text__tagline {
   font-family: var(--font-script);
   font-size: clamp(22px, 3vw, 40px);
   color: var(--cream);
   opacity: 0;
   line-height: 1.25;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
 }
+
+/* --- Description — more visible --- */
 .hero-text__desc {
   font-family: var(--font-body);
   font-size: 14px;
@@ -221,13 +289,18 @@ ul, ol { list-style: none; }
   line-height: 1.75;
   max-width: 380px;
   margin-bottom: 36px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
 }
+
+/* --- Actions --- */
 .hero-text__actions {
   display: flex;
   flex-direction: column;
   gap: 16px;
   opacity: 0;
 }
+
+/* CTA button with glow pulse */
 .hero-text__cta {
   display: inline-flex;
   align-items: center;
@@ -240,28 +313,36 @@ ul, ol { list-style: none; }
   border-radius: 50px;
   background: var(--cream);
   color: var(--red);
-  transition: background 0.3s, transform 0.3s;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
   width: fit-content;
   cursor: pointer;
   font-weight: 700;
+  box-shadow: 0 4px 24px rgba(255,245,230,0.25), 0 0 0 0 rgba(255,245,230,0.4);
+  animation: ctaPulse 3s ease-in-out infinite 2s;
 }
 .hero-text__cta svg { transition: transform 0.3s; }
 .hero-text__cta:hover {
   background: #fff;
-  transform: scale(1.05);
+  transform: scale(1.06);
+  box-shadow: 0 6px 32px rgba(255,245,230,0.4);
+  animation: none;
 }
 .hero-text__cta:hover svg { transform: translate(3px, -3px); }
+
+/* Meta location — higher visibility */
 .hero-text__meta {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   font-family: var(--font-body);
   font-size: 12px;
   color: var(--cream);
-  opacity: 0.5;
-  letter-spacing: 0.04em;
+  opacity: 0.85;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
-.hero-text__meta svg { opacity: 0.65; }
+.hero-text__meta svg { opacity: 0.9; }
 .hero-canvas {
   position: absolute;
   inset: 0;
@@ -281,12 +362,14 @@ ul, ol { list-style: none; }
     text-align: center;
     align-items: center;
   }
+  .hero-text__eyebrow { justify-content: center; }
   .hero-text__title { align-items: center; }
   .hero-text__line { font-size: clamp(52px, 15vw, 90px); }
   .hero-text__line--outline { font-size: clamp(56px, 17vw, 100px); }
   .hero-text__desc { max-width: 100%; }
   .hero-text__actions { align-items: center; }
   .hero-text__sep { margin-left: auto; margin-right: auto; }
+  .hero-text__eyebrow-line { width: 28px; }
 }
 
 /* ============================================

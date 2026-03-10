@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // ---- Hero text reveal synced with scroll ----
+    // ---- Hero text reveal — cinematic scroll-synced ----
     const heroEyebrow = document.getElementById('heroEyebrow');
     const heroLine1 = document.getElementById('heroLine1');
     const heroLine2 = document.getElementById('heroLine2');
@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTagline = document.getElementById('heroTagline');
     const heroDesc = document.getElementById('heroDesc');
     const heroActions = document.getElementById('heroActions');
+    const heroEyebrowLines = document.querySelectorAll('.hero-text__eyebrow-line');
 
     const heroTL = gsap.timeline({
       scrollTrigger: {
@@ -191,67 +192,82 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Eyebrow
+    // Eyebrow: fade in with decorative lines expanding
     if (heroEyebrow) {
       heroTL.fromTo(heroEyebrow,
-        { opacity: 0, y: 16, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.04, ease: 'power2.out' },
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' },
         0.01
       );
+      // Decorative lines expand outward
+      if (heroEyebrowLines.length) {
+        heroTL.fromTo(heroEyebrowLines,
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.04, stagger: 0.01, ease: 'power3.out' },
+          0.03
+        );
+      }
     }
-    // MAMMA
+
+    // MAMMA — dramatic 3D entrance with letter-spacing
     if (heroLine1) {
       heroTL.fromTo(heroLine1,
-        { opacity: 0, y: 80, rotateX: -15 },
-        { opacity: 1, y: 0, rotateX: 0, duration: 0.07, ease: 'power3.out' },
-        0.04
+        { opacity: 0, y: 100, rotateX: -20, letterSpacing: '0.15em' },
+        { opacity: 1, y: 0, rotateX: 0, letterSpacing: '-0.03em', duration: 0.09, ease: 'power4.out' },
+        0.05
       );
     }
-    // MIA !
+
+    // MIA ! — slide up with 3D rotation, slight delay for drama
     if (heroLine2) {
       heroTL.fromTo(heroLine2,
-        { opacity: 0, y: 80, rotateX: -15 },
-        { opacity: 1, y: 0, rotateX: 0, duration: 0.07, ease: 'power3.out' },
-        0.09
+        { opacity: 0, y: 100, rotateX: -25, scale: 0.9 },
+        { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.09, ease: 'power4.out' },
+        0.12
       );
     }
-    // Separator line
+
+    // Separator line — expand with glow
     if (heroSep) {
       heroTL.fromTo(heroSep,
-        { opacity: 0, scaleX: 0 },
-        { opacity: 1, scaleX: 1, duration: 0.04, ease: 'power2.out' },
-        0.16
-      );
-    }
-    // Tagline
-    if (heroTagline) {
-      heroTL.fromTo(heroTagline,
-        { opacity: 0, y: 24 },
-        { opacity: 0.9, y: 0, duration: 0.06, ease: 'power2.out' },
+        { opacity: 0, scaleX: 0, width: 0 },
+        { opacity: 1, scaleX: 1, width: 56, duration: 0.05, ease: 'power3.inOut' },
         0.20
       );
     }
-    // Description
+
+    // Tagline — elegant entrance
+    if (heroTagline) {
+      heroTL.fromTo(heroTagline,
+        { opacity: 0, y: 30, letterSpacing: '0.08em' },
+        { opacity: 0.95, y: 0, letterSpacing: '0em', duration: 0.07, ease: 'power3.out' },
+        0.24
+      );
+    }
+
+    // Description — visible and clear
     if (heroDesc) {
       heroTL.fromTo(heroDesc,
         { opacity: 0, y: 20 },
-        { opacity: 0.65, y: 0, duration: 0.06, ease: 'power2.out' },
-        0.26
+        { opacity: 0.85, y: 0, duration: 0.06, ease: 'power2.out' },
+        0.30
       );
     }
-    // Actions
+
+    // Actions — CTA button with bounce
     if (heroActions) {
       heroTL.fromTo(heroActions,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.08, ease: 'power2.out' },
-        0.32
+        { opacity: 0, y: 24, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.08, ease: 'back.out(1.4)' },
+        0.35
       );
     }
 
     // Fade out at the end (86-94%)
     heroTL.to('#heroText', {
       opacity: 0,
-      y: -60,
+      y: -80,
+      scale: 0.97,
       duration: 0.08,
       ease: 'power2.in',
     }, 0.86);
