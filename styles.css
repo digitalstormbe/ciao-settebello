@@ -151,16 +151,17 @@ ul, ol { list-style: none; }
   top: 0;
   width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
   overflow: hidden;
 }
 
-/* ---- Hero text (left side) ---- */
+/* ---- Hero text (overlay on left) ---- */
 .hero-text {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 2;
   width: 45%;
+  height: 100%;
   padding-left: var(--side-pad);
   padding-right: 40px;
   display: flex;
@@ -249,14 +250,12 @@ ul, ol { list-style: none; }
   letter-spacing: 0.03em;
 }
 
-/* ---- Animation canvas (right side) ---- */
+/* ---- Animation canvas (full-screen behind text) ---- */
 .hero-canvas {
-  position: relative;
-  width: 55%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 .scroll-anim__canvas {
@@ -265,12 +264,9 @@ ul, ol { list-style: none; }
   height: 100%;
 }
 
-/* ---- Mobile: stack vertically ---- */
+/* ---- Mobile ---- */
 @media (max-width: 900px) {
   .scroll-anim { height: 250vh; }
-  .scroll-anim__sticky {
-    flex-direction: column;
-  }
   .hero-text {
     width: 100%;
     padding: 80px var(--side-pad) 20px;
@@ -281,10 +277,6 @@ ul, ol { list-style: none; }
   .hero-text__line { font-size: clamp(48px, 14vw, 80px); }
   .hero-text__desc { max-width: 100%; }
   .hero-text__actions { align-items: center; }
-  .hero-canvas {
-    width: 100%;
-    height: 50vh;
-  }
 }
 
 /* ============================================

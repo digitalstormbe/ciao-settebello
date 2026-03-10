@@ -60,19 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   framePaths.push('assets/frames/last.png');
 
-  const heroCanvasContainer = document.querySelector('.hero-canvas');
-
   function resizeCanvas() {
     if (!animCanvas || !ctx) return;
     const dpr = window.devicePixelRatio || 1;
-    // Use the .hero-canvas container dimensions (55% width) instead of window
-    const container = heroCanvasContainer || animCanvas.parentElement;
-    const w = container ? container.clientWidth : window.innerWidth;
-    const h = container ? container.clientHeight : window.innerHeight;
-    animCanvas.width = w * dpr;
-    animCanvas.height = h * dpr;
-    animCanvas.style.width = w + 'px';
-    animCanvas.style.height = h + 'px';
+    animCanvas.width = window.innerWidth * dpr;
+    animCanvas.height = window.innerHeight * dpr;
+    animCanvas.style.width = window.innerWidth + 'px';
+    animCanvas.style.height = window.innerHeight + 'px';
     if (currentFrame >= 0) drawFrame(currentFrame);
   }
 
