@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = animCanvas ? animCanvas.getContext('2d') : null;
   const scrollAnimSection = document.getElementById('scrollAnimation');
   const navbar = document.getElementById('navbar');
-  const FRAME_COUNT = 97;
+  const FRAME_COUNT = 73;
   const framePaths = [];
   const frameImages = new Array(FRAME_COUNT);
   let currentFrame = -1;
 
-  // Build frame paths: 1.png -> frame_0001-0095.webp -> 2.png
+  // Build frame paths: 1.png -> frame_0001-0071.webp -> 2.png
   framePaths.push('assets/frames/1.png');
-  for (let i = 1; i <= 95; i++) {
+  for (let i = 1; i <= 71; i++) {
     framePaths.push('assets/frames/frame_' + String(i).padStart(4, '0') + '.webp');
   }
   framePaths.push('assets/frames/2.png');
@@ -174,12 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ---- Hero text reveal synced with scroll ----
-    const heroBadge = document.getElementById('heroBadge');
+    const heroEyebrow = document.getElementById('heroEyebrow');
     const heroLine1 = document.getElementById('heroLine1');
     const heroLine2 = document.getElementById('heroLine2');
-    const heroLine3 = document.getElementById('heroLine3');
-    const heroScript = document.getElementById('heroScript');
     const heroSep = document.getElementById('heroSep');
+    const heroTagline = document.getElementById('heroTagline');
     const heroDesc = document.getElementById('heroDesc');
     const heroActions = document.getElementById('heroActions');
 
@@ -192,10 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Badge pill
-    if (heroBadge) {
-      heroTL.fromTo(heroBadge,
-        { opacity: 0, y: 20, scale: 0.9 },
+    // Eyebrow
+    if (heroEyebrow) {
+      heroTL.fromTo(heroEyebrow,
+        { opacity: 0, y: 16, scale: 0.95 },
         { opacity: 1, y: 0, scale: 1, duration: 0.04, ease: 'power2.out' },
         0.01
       );
@@ -203,33 +202,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // MAMMA
     if (heroLine1) {
       heroTL.fromTo(heroLine1,
-        { opacity: 0, y: 70 },
-        { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' },
+        { opacity: 0, y: 80, rotateX: -15 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.07, ease: 'power3.out' },
         0.04
       );
     }
-    // MIA
+    // MIA !
     if (heroLine2) {
       heroTL.fromTo(heroLine2,
-        { opacity: 0, y: 70 },
-        { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' },
-        0.08
-      );
-    }
-    // CHE BONTA! (outline)
-    if (heroLine3) {
-      heroTL.fromTo(heroLine3,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' },
-        0.12
-      );
-    }
-    // Script tagline
-    if (heroScript) {
-      heroTL.fromTo(heroScript,
-        { opacity: 0, x: -30 },
-        { opacity: 0.9, x: 0, duration: 0.06, ease: 'power2.out' },
-        0.17
+        { opacity: 0, y: 80, rotateX: -15 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.07, ease: 'power3.out' },
+        0.09
       );
     }
     // Separator line
@@ -237,14 +220,22 @@ document.addEventListener('DOMContentLoaded', () => {
       heroTL.fromTo(heroSep,
         { opacity: 0, scaleX: 0 },
         { opacity: 1, scaleX: 1, duration: 0.04, ease: 'power2.out' },
-        0.22
+        0.16
+      );
+    }
+    // Tagline
+    if (heroTagline) {
+      heroTL.fromTo(heroTagline,
+        { opacity: 0, y: 24 },
+        { opacity: 0.9, y: 0, duration: 0.06, ease: 'power2.out' },
+        0.20
       );
     }
     // Description
     if (heroDesc) {
       heroTL.fromTo(heroDesc,
         { opacity: 0, y: 20 },
-        { opacity: 0.7, y: 0, duration: 0.08, ease: 'power2.out' },
+        { opacity: 0.65, y: 0, duration: 0.06, ease: 'power2.out' },
         0.26
       );
     }
@@ -253,17 +244,17 @@ document.addEventListener('DOMContentLoaded', () => {
       heroTL.fromTo(heroActions,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.08, ease: 'power2.out' },
-        0.34
+        0.32
       );
     }
 
-    // Fade out at the end (88-96%)
+    // Fade out at the end (86-94%)
     heroTL.to('#heroText', {
       opacity: 0,
-      y: -50,
+      y: -60,
       duration: 0.08,
       ease: 'power2.in',
-    }, 0.88);
+    }, 0.86);
   }
 
   // ========================================

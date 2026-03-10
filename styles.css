@@ -148,84 +148,84 @@ ul, ol { list-style: none; }
   position: absolute;
   top: 0; left: 0;
   z-index: 2;
-  width: 48%; height: 100%;
+  width: 50%; height: 100%;
   padding-left: var(--side-pad);
   padding-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.hero-text__badge {
+.hero-text__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,245,230,0.12);
-  border: 1px solid rgba(255,245,230,0.2);
-  border-radius: 100px;
-  padding: 8px 18px;
-  margin-bottom: 28px;
-  width: fit-content;
-  opacity: 0;
-}
-.hero-text__badge svg { color: var(--cream); flex-shrink: 0; }
-.hero-text__badge span {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11px;
   color: var(--cream);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   font-weight: 500;
+  margin-bottom: 32px;
+  opacity: 0;
+}
+.hero-text__eyebrow svg {
+  color: var(--cream);
+  flex-shrink: 0;
+  opacity: 0.7;
 }
 .hero-text__title {
   display: flex;
   flex-direction: column;
-  line-height: 0.88;
-  margin-bottom: 8px;
+  line-height: 0.85;
+  margin-bottom: 24px;
+  perspective: 600px;
 }
 .hero-text__line {
   font-family: var(--font-display);
-  font-size: clamp(56px, 9vw, 140px);
+  font-size: clamp(64px, 10vw, 160px);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   display: block;
   opacity: 0;
 }
-.hero-text__line--filled { color: var(--cream); }
+.hero-text__line--filled {
+  color: var(--cream);
+}
 .hero-text__line--outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--cream);
-  font-size: clamp(40px, 6.5vw, 100px);
-  margin-top: 4px;
-}
-.hero-text__script {
-  font-family: var(--font-script);
-  font-size: clamp(20px, 2.8vw, 36px);
-  color: var(--cream);
-  opacity: 0;
-  line-height: 1.3;
-  margin-bottom: 20px;
+  font-size: clamp(68px, 11vw, 180px);
+  letter-spacing: -0.04em;
 }
 .hero-text__sep {
-  width: 50px; height: 2px;
+  width: 48px; height: 2px;
   background: var(--cream);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   opacity: 0;
   transform-origin: left;
 }
-.hero-text__desc {
-  font-family: var(--font-body);
-  font-size: 15px;
+.hero-text__tagline {
+  font-family: var(--font-script);
+  font-size: clamp(22px, 3vw, 40px);
   color: var(--cream);
   opacity: 0;
-  line-height: 1.7;
-  max-width: 360px;
-  margin-bottom: 32px;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.hero-text__desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--cream);
+  opacity: 0;
+  line-height: 1.75;
+  max-width: 380px;
+  margin-bottom: 36px;
 }
 .hero-text__actions {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   opacity: 0;
 }
 .hero-text__cta {
@@ -233,16 +233,17 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 16px 36px;
+  letter-spacing: 0.06em;
+  padding: 18px 40px;
   border-radius: 50px;
   background: var(--cream);
   color: var(--red);
   transition: background 0.3s, transform 0.3s;
   width: fit-content;
   cursor: pointer;
+  font-weight: 700;
 }
 .hero-text__cta svg { transition: transform 0.3s; }
 .hero-text__cta:hover {
@@ -255,12 +256,12 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 6px;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 12px;
   color: var(--cream);
-  opacity: 0.55;
-  letter-spacing: 0.03em;
+  opacity: 0.5;
+  letter-spacing: 0.04em;
 }
-.hero-text__meta svg { opacity: 0.7; }
+.hero-text__meta svg { opacity: 0.65; }
 .hero-canvas {
   position: absolute;
   inset: 0;
@@ -281,9 +282,11 @@ ul, ol { list-style: none; }
     align-items: center;
   }
   .hero-text__title { align-items: center; }
-  .hero-text__line { font-size: clamp(48px, 14vw, 80px); }
+  .hero-text__line { font-size: clamp(52px, 15vw, 90px); }
+  .hero-text__line--outline { font-size: clamp(56px, 17vw, 100px); }
   .hero-text__desc { max-width: 100%; }
   .hero-text__actions { align-items: center; }
+  .hero-text__sep { margin-left: auto; margin-right: auto; }
 }
 
 /* ============================================
