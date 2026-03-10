@@ -247,12 +247,6 @@ ul, ol { list-style: none; }
   line-height: 1.3;
   padding: 8px;
 }
-.sticker--hero {
-  top: 18%;
-  right: 10%;
-  background: var(--cream);
-  color: var(--red);
-}
 .sticker--concept {
   bottom: -20px;
   right: -20px;
@@ -274,13 +268,6 @@ ul, ol { list-style: none; }
 }
 
 @media (max-width: 768px) {
-  .sticker--hero {
-    top: auto;
-    bottom: 20%;
-    right: 5%;
-    width: 70px;
-    height: 70px;
-  }
   .sticker--footer {
     display: none;
   }
@@ -289,83 +276,116 @@ ul, ol { list-style: none; }
 /* ============================================
    NAVIGATION
    ============================================ */
+/* ---- Floating Bar Navbar ---- */
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
-  transition: background 0.4s, box-shadow 0.4s, transform 0.4s;
+  width: calc(100% - 48px);
+  max-width: 1200px;
+  transition: opacity 0.4s, transform 0.4s;
 }
-.nav.scrolled {
-  background: var(--cream);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-}
-.nav__inner {
+.nav__bar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--nav-height);
-  padding: 0 var(--side-pad);
-  max-width: 1440px;
-  margin: 0 auto;
+  height: 56px;
+  padding: 0 8px 0 32px;
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.06);
 }
-.nav__logo-img {
-  height: 48px;
-  width: auto;
-  filter: brightness(0) invert(1);
-  transition: filter 0.4s;
-}
-.nav.scrolled .nav__logo-img {
-  filter: none;
-}
-.nav__links {
+
+/* Left: nav links */
+.nav__left {
   display: flex;
-  gap: 32px;
+  align-items: center;
+  gap: 28px;
 }
 .nav__link {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--cream);
+  color: var(--black);
   transition: color 0.3s, opacity 0.3s;
   position: relative;
+  white-space: nowrap;
 }
 .nav__link::after {
   content: '';
   position: absolute;
   bottom: -4px; left: 0;
   width: 0; height: 2px;
-  background: currentColor;
+  background: var(--red);
   transition: width 0.3s var(--ease-out-expo);
 }
 .nav__link:hover::after { width: 100%; }
-.nav.scrolled .nav__link { color: var(--black); }
-.nav__cta {
+.nav__link:hover { color: var(--red); }
+
+/* Center: brand name */
+.nav__brand {
   font-family: var(--font-display);
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 12px 28px;
-  border-radius: 50px;
-  background: var(--cream);
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 900;
   color: var(--red);
-  transition: background 0.3s, color 0.3s, transform 0.3s;
-}
-.nav__cta:hover {
-  background: var(--black);
-  color: var(--cream);
-  transform: scale(1.05);
-}
-.nav.scrolled .nav__cta {
-  background: var(--red);
-  color: var(--cream);
-}
-.nav.scrolled .nav__cta:hover {
-  background: var(--red-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* Burger */
+/* Right: socials + CTA */
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.nav__socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--black);
+  transition: color 0.3s, background 0.3s;
+}
+.nav__social:hover {
+  color: var(--red);
+  background: rgba(237,28,36,0.08);
+}
+.nav__cta {
+  font-family: var(--font-display);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 24px;
+  border-radius: 50px;
+  background: var(--red);
+  color: var(--cream);
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+  white-space: nowrap;
+}
+.nav__cta:hover {
+  background: var(--red-dark);
+  transform: scale(1.05);
+}
+
+/* Burger (mobile only) */
 .nav__burger {
   display: none;
   flex-direction: column;
@@ -376,10 +396,9 @@ ul, ol { list-style: none; }
 .nav__burger span {
   display: block;
   width: 28px; height: 2px;
-  background: var(--cream);
+  background: var(--black);
   transition: transform 0.3s, opacity 0.3s, background 0.3s;
 }
-.nav.scrolled .nav__burger span { background: var(--black); }
 .nav__burger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .nav__burger.active span:nth-child(2) { opacity: 0; }
 .nav__burger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -427,197 +446,46 @@ ul, ol { list-style: none; }
   color: var(--cream);
   transition: background 0.3s, color 0.3s;
 }
+.mobile-menu__socials {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+.mobile-menu__socials a {
+  color: var(--cream);
+  transition: opacity 0.3s;
+}
+.mobile-menu__socials a:hover { opacity: 0.7; }
 .mobile-menu__cta:hover {
   background: var(--cream);
   color: var(--red);
 }
 
-@media (max-width: 768px) {
-  .nav__links, .nav__cta { display: none; }
+@media (max-width: 900px) {
+  .nav__left, .nav__right { display: none; }
   .nav__burger { display: flex; }
+  .nav__bar { padding: 0 12px 0 24px; }
+  .nav__brand {
+    position: static;
+    transform: none;
+  }
+  .nav__bar {
+    justify-content: space-between;
+  }
 }
 
 /* ============================================
-   HERO — With Outlined Text
+   WAVE TRANSITION (scroll-anim → content)
    ============================================ */
-.hero {
+.wave-transition {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
   background: var(--red);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: calc(var(--nav-height) + 40px) var(--side-pad) 0;
-  overflow: hidden;
-}
-.hero__content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 80px;
-}
-.hero__script {
-  font-family: var(--font-script);
-  font-size: clamp(32px, 6vw, 56px);
-  color: var(--cream);
-  margin-bottom: -4px;
-  opacity: 0;
-  transform: translateY(30px) rotate(-3deg);
-}
-.hero__title {
-  font-family: var(--font-display);
-  font-size: clamp(64px, 16vw, 220px);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 0.85;
-  opacity: 0;
-  transform: translateY(60px);
-}
-.hero__title-fill {
-  color: var(--cream);
-  display: block;
-}
-.hero__title-outline {
-  display: block;
-  color: transparent;
-  -webkit-text-stroke: 2px var(--cream);
-  text-stroke: 2px var(--cream);
-}
-.hero__subtitle {
-  font-family: var(--font-body);
-  font-size: clamp(11px, 1.8vw, 16px);
-  font-weight: 600;
-  color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-top: 16px;
-  opacity: 0;
-  transform: translateY(30px);
-}
-.hero__illustration {
-  margin-top: 24px;
-  opacity: 0;
-  transform: scale(0.8) translateY(40px);
-}
-.hero__building {
-  height: clamp(100px, 20vw, 240px);
-  width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
-}
-
-/* Hero CTA with arrow */
-.hero__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 24px;
-  font-family: var(--font-display);
-  font-size: clamp(13px, 1.8vw, 17px);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 18px 44px;
-  background: var(--cream);
-  color: var(--red);
-  border-radius: 50px;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
-  opacity: 0;
-  transform: translateY(30px);
-  position: relative;
-  overflow: hidden;
-}
-.hero__cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--black);
-  border-radius: 50px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s var(--ease-out-expo);
-}
-.hero__cta:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-.hero__cta span,
-.hero__cta svg {
-  position: relative;
-  z-index: 1;
-}
-.hero__cta:hover {
-  color: var(--cream);
-}
-.hero__cta-arrow {
-  transition: transform 0.3s;
-}
-.hero__cta:hover .hero__cta-arrow {
-  transform: translate(4px, -4px);
-}
-
-/* Hero decorative elements — floating stars/sparkles */
-.hero__deco {
-  position: absolute;
-  color: var(--cream);
-  opacity: 0;
-  font-size: 24px;
-  z-index: 1;
-}
-.hero__deco--1 {
-  top: 15%;
-  left: 8%;
-  font-size: 32px;
-  animation: float 6s ease-in-out infinite;
-}
-.hero__deco--2 {
-  top: 25%;
-  right: 12%;
-  font-size: 20px;
-  animation: float 8s ease-in-out infinite 1s;
-}
-.hero__deco--3 {
-  bottom: 25%;
-  left: 15%;
-  font-size: 28px;
-  animation: float 7s ease-in-out infinite 2s;
-}
-.hero__deco--4 {
-  bottom: 35%;
-  right: 8%;
-  font-size: 18px;
-  animation: float 5s ease-in-out infinite 0.5s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(15deg); }
-}
-
-/* Wavy divider */
-.hero__wave {
-  position: absolute;
-  bottom: -1px; left: 0; right: 0;
-  z-index: 3;
   line-height: 0;
+  margin-top: -1px;
 }
-.hero__wave svg {
+.wave-transition svg {
   width: 100%;
   height: 80px;
-}
-
-@media (max-width: 768px) {
-  .hero__title {
-    font-size: clamp(56px, 20vw, 120px);
-  }
-  .hero__title-outline {
-    -webkit-text-stroke-width: 1.5px;
-  }
 }
 
 /* ============================================
@@ -1311,6 +1179,11 @@ ul, ol { list-style: none; }
   text-align: center;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(15deg); }
+}
+
 /* Footer decorative elements */
 .footer__deco {
   position: absolute;
@@ -1479,15 +1352,6 @@ ul, ol { list-style: none; }
     transition-duration: 0.01ms !important;
   }
   .marquee__track { animation: none; }
-  .hero__script,
-  .hero__title,
-  .hero__subtitle,
-  .hero__illustration,
-  .hero__cta {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  .hero__deco { animation: none; }
   .footer__deco { animation: none; }
   .sticker { animation: none; }
   .scroll-anim { display: none; }

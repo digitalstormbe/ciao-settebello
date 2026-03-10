@@ -153,13 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Trigger hero animation & show navbar when hero enters
+    // Show navbar when scroll animation ends and content appears
     ScrollTrigger.create({
-      trigger: '.hero',
-      start: 'top 85%',
+      trigger: '.marquee-section',
+      start: 'top 90%',
       once: true,
       onEnter: () => {
-        startHeroAnimation();
         if (navbar) {
           gsap.to(navbar, { opacity: 1, duration: 0.6, ease: 'power2.out' });
           navbar.style.pointerEvents = '';
@@ -176,10 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (prefersReducedMotion) {
     if (loader) loader.style.display = 'none';
     if (scrollAnimSection) scrollAnimSection.style.display = 'none';
-    document.querySelectorAll('.hero__script, .hero__title, .hero__subtitle, .hero__illustration, .hero__cta').forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
     if (lenis) lenis.start();
   } else {
     // Hide navbar during scroll animation
@@ -204,110 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     });
-  }
-
-  // ========================================
-  // HERO ANIMATIONS — After loader
-  // ========================================
-  function startHeroAnimation() {
-    // SplitType on hero title spans for letter-by-letter reveal
-    const heroTitleFill = document.querySelector('.hero__title-fill');
-    const heroTitleOutline = document.querySelector('.hero__title-outline');
-    const heroTitle = document.querySelector('.hero__title');
-
-    let fillSplit, outlineSplit;
-
-    if (typeof SplitType !== 'undefined') {
-      if (heroTitleFill) {
-        fillSplit = new SplitType(heroTitleFill, { types: 'chars' });
-        gsap.set(fillSplit.chars, { opacity: 0, y: 100, rotationX: -90 });
-      }
-      if (heroTitleOutline) {
-        outlineSplit = new SplitType(heroTitleOutline, { types: 'chars' });
-        gsap.set(outlineSplit.chars, { opacity: 0, y: 100, rotationX: -90 });
-      }
-    }
-
-    // Make parent visible (CSS starts at opacity:0)
-    if (heroTitle) {
-      gsap.set(heroTitle, { opacity: 1, y: 0 });
-    }
-
-    const heroTL = gsap.timeline();
-
-    // Script "Ciao" swoops in with rotation
-    heroTL.to('.hero__script', {
-      opacity: 1,
-      y: 0,
-      rotation: 0,
-      duration: 0.9,
-      ease: 'power3.out',
-    });
-
-    // SETTE letters cascade in with 3D rotation
-    if (fillSplit && fillSplit.chars) {
-      heroTL.to(fillSplit.chars, {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        stagger: 0.05,
-        ease: 'back.out(1.5)',
-      }, '-=0.4');
-    }
-
-    // BELLO letters cascade in (outlined) — slightly delayed
-    if (outlineSplit && outlineSplit.chars) {
-      heroTL.to(outlineSplit.chars, {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        stagger: 0.05,
-        ease: 'back.out(1.5)',
-      }, '-=0.5');
-    }
-
-    // Subtitle fades up
-    heroTL.to('.hero__subtitle', {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    }, '-=0.3');
-
-    // Illustration scales in with elastic bounce
-    heroTL.to('.hero__illustration', {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 1.2,
-      ease: 'elastic.out(1, 0.6)',
-    }, '-=0.5');
-
-    // CTA button slides up
-    heroTL.to('.hero__cta', {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    }, '-=0.6');
-
-    // Decorative elements fade in
-    heroTL.to('.hero__deco', {
-      opacity: 0.15,
-      duration: 1.2,
-      stagger: 0.15,
-    }, '-=0.8');
-
-    // Sticker spins in from nowhere
-    heroTL.from('.sticker--hero', {
-      scale: 0,
-      rotation: -180,
-      opacity: 0,
-      duration: 1,
-      ease: 'back.out(2)',
-    }, '-=0.6');
   }
 
   // ========================================
@@ -490,41 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
           ease: 'elastic.out(1, 0.5)',
         });
       });
-    });
-  }
-
-  // ========================================
-  // HERO PARALLAX — Scale down + fade on scroll
-  // ========================================
-  if (!prefersReducedMotion) {
-    gsap.to('.hero__content', {
-      scale: 0.85,
-      opacity: 0.3,
-      y: -80,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.5,
-      }
-    });
-
-    // Decorative elements parallax
-    gsap.to('.hero__deco--1', {
-      y: -120,
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 2 }
-    });
-    gsap.to('.hero__deco--3', {
-      y: -180,
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
-    });
-
-    // Sticker parallax
-    gsap.to('.sticker--hero', {
-      y: -100,
-      rotation: 90,
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 2 }
     });
   }
 
@@ -860,22 +716,20 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastScroll = 0;
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
-    navbar.classList.toggle('scrolled', currentScroll > 50);
-
     // Auto-hide nav on scroll down, show on scroll up
     if (currentScroll > 300) {
       if (currentScroll > lastScroll && !mobileMenu.classList.contains('active')) {
-        navbar.style.transform = 'translateY(-100%)';
+        navbar.style.transform = 'translateX(-50%) translateY(-120%)';
       } else {
-        navbar.style.transform = 'translateY(0)';
+        navbar.style.transform = 'translateX(-50%) translateY(0)';
       }
     } else {
-      navbar.style.transform = 'translateY(0)';
+      navbar.style.transform = 'translateX(-50%) translateY(0)';
     }
     lastScroll = currentScroll;
   }, { passive: true });
 
-  navbar.style.transition = 'background 0.4s, box-shadow 0.4s, transform 0.4s';
+  navbar.style.transition = 'opacity 0.4s, transform 0.4s';
 
   // Burger toggle
   navBurger.addEventListener('click', () => {
@@ -885,11 +739,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileMenu.classList.contains('active')) {
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
-      navbar.style.transform = 'translateY(0)';
+      navbar.style.transform = 'translateX(-50%) translateY(0)';
 
       // Animate mobile links in
       if (!prefersReducedMotion) {
-        gsap.from('.mobile-menu__link, .mobile-menu__cta', {
+        gsap.from('.mobile-menu__link, .mobile-menu__socials, .mobile-menu__cta', {
           opacity: 0,
           y: 30,
           duration: 0.5,
