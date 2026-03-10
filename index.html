@@ -21,7 +21,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body>
 
@@ -46,6 +46,29 @@
   <section id="scrollAnimation" class="scroll-anim">
     <div class="scroll-anim__sticky">
       <canvas id="animCanvas" class="scroll-anim__canvas"></canvas>
+
+      <!-- Glassmorphism info cards -->
+      <div id="infoCard1" class="glass-card glass-card--left" style="opacity:0;">
+        <span class="glass-card__icon">🍕</span>
+        <div class="glass-card__text">
+          <strong>Buffet italien</strong>
+          <span>À volonté</span>
+        </div>
+      </div>
+
+      <div id="infoCard2" class="glass-card glass-card--right" style="opacity:0;">
+        <span class="glass-card__icon">📍</span>
+        <div class="glass-card__text">
+          <strong>Boussu</strong>
+          <span>Belgique</span>
+        </div>
+      </div>
+
+      <div id="infoCard3" class="glass-card glass-card--center" style="opacity:0;">
+        <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="glass-card__cta">
+          Réserver une table
+        </a>
+      </div>
     </div>
   </section>
 
@@ -450,6 +473,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>

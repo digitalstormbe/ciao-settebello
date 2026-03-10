@@ -274,6 +274,95 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================
+   GLASSMORPHISM INFO CARDS (on scroll animation)
+   ============================================ */
+.glass-card {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  color: var(--cream);
+  font-family: var(--font-body);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+.glass-card__icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.glass-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.glass-card__text strong {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.glass-card__text span {
+  font-size: 13px;
+  opacity: 0.8;
+}
+.glass-card__cta {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 28px;
+  border-radius: 50px;
+  background: var(--cream);
+  color: var(--red);
+  pointer-events: auto;
+  transition: background 0.3s, transform 0.3s;
+  white-space: nowrap;
+}
+.glass-card__cta:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
+/* Card positions */
+.glass-card--left {
+  bottom: 18%;
+  left: 6%;
+}
+.glass-card--right {
+  bottom: 18%;
+  right: 6%;
+}
+.glass-card--center {
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 10px 14px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+  .glass-card__icon { font-size: 22px; }
+  .glass-card__text strong { font-size: 13px; }
+  .glass-card__text span { font-size: 11px; }
+  .glass-card--left { bottom: 14%; left: 4%; }
+  .glass-card--right { bottom: 14%; right: 4%; }
+  .glass-card--center { bottom: 5%; }
+  .glass-card__cta { font-size: 12px; padding: 10px 20px; }
+}
+
+/* ============================================
    NAVIGATION
    ============================================ */
 /* ---- Floating Bar Navbar ---- */

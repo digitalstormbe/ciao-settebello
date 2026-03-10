@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger: scrollAnimSection,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.3,
+        scrub: true,
       },
       onUpdate: () => {
         const idx = Math.round(frameObj.frame);
@@ -153,10 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Show navbar when scroll animation ends and content appears
+    // Show navbar early — as soon as user starts scrolling (5% into animation)
     ScrollTrigger.create({
-      trigger: '.marquee-section',
-      start: 'top 90%',
+      trigger: scrollAnimSection,
+      start: 'top top-=5%',
       once: true,
       onEnter: () => {
         if (navbar) {
@@ -165,6 +165,74 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+
+    // Glassmorphism info cards — appear/disappear synced with animation frames
+    const card1 = document.getElementById('infoCard1');
+    const card2 = document.getElementById('infoCard2');
+    const card3 = document.getElementById('infoCard3');
+
+    // Card 1: "Buffet italien à volonté" — fade in at 8%, fade out at 65%
+    if (card1) {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: scrollAnimSection,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true,
+        }
+      })
+      .fromTo(card1,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.08 },  // 0-8% = fade in
+        0.05
+      )
+      .to(card1,
+        { opacity: 0, y: -20, duration: 0.1 },  // 60-70% = fade out
+        0.60
+      );
+    }
+
+    // Card 2: "Boussu, Belgique" — fade in at 30%, fade out at 80%
+    if (card2) {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: scrollAnimSection,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true,
+        }
+      })
+      .fromTo(card2,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.08 },
+        0.25
+      )
+      .to(card2,
+        { opacity: 0, y: -20, duration: 0.1 },
+        0.75
+      );
+    }
+
+    // Card 3: CTA "Réserver" — fade in at 55%, fade out at 92%
+    if (card3) {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: scrollAnimSection,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true,
+        }
+      })
+      .fromTo(card3,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.08 },
+        0.50
+      )
+      .to(card3,
+        { opacity: 0, y: -20, duration: 0.1 },
+        0.88
+      );
+    }
   }
 
   // ========================================
