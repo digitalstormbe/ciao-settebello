@@ -103,26 +103,15 @@ ul, ol { list-style: none; }
 }
 .loader__inner {
   text-align: center;
+  padding: 0 var(--side-pad);
 }
-.loader__icon {
-  height: 80px;
-  filter: brightness(0) invert(1);
-  margin-bottom: 24px;
-  opacity: 0;
-}
-.loader__text {
-  display: flex;
-  gap: 4px;
-  justify-content: center;
-}
-.loader__letter {
-  font-family: var(--font-display);
-  font-size: 48px;
-  color: var(--cream);
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(40px);
-  display: inline-block;
+.loader__hero-img {
+  max-width: 100%;
+  max-height: 55vh;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 .loader__bar {
   width: 200px;
@@ -137,6 +126,40 @@ ul, ol { list-style: none; }
   width: 0;
   background: var(--cream);
   border-radius: 3px;
+  transition: width 0.3s ease-out;
+}
+.loader__hint {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--cream);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 16px;
+}
+
+/* ============================================
+   SCROLL ANIMATION — Frame sequence
+   ============================================ */
+.scroll-anim {
+  position: relative;
+  height: 200vh;
+  background: var(--red);
+}
+.scroll-anim__sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.scroll-anim__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* ============================================
@@ -1467,12 +1490,6 @@ ul, ol { list-style: none; }
   .hero__deco { animation: none; }
   .footer__deco { animation: none; }
   .sticker { animation: none; }
-  .loader__letter {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  .loader__icon {
-    opacity: 1 !important;
-  }
+  .scroll-anim { display: none; }
   .grain { display: none; }
 }

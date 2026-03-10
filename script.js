@@ -42,22 +42,156 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================
-  // PAGE LOADER — Cinematic entrance
+  // SCROLL ANIMATION — Frame-by-frame canvas
+  // ========================================
+  const animCanvas = document.getElementById('animCanvas');
+  const ctx = animCanvas ? animCanvas.getContext('2d') : null;
+  const scrollAnimSection = document.getElementById('scrollAnimation');
+  const navbar = document.getElementById('navbar');
+  const FRAME_COUNT = 49;
+  const framePaths = [];
+  const frameImages = new Array(FRAME_COUNT);
+  let currentFrame = -1;
+
+  // Build frame paths: first.png → frame_0002—0048.webp → last.png
+  framePaths.push('assets/frames/first.png');
+  for (let i = 2; i <= 48; i++) {
+    framePaths.push('assets/frames/frame_' + String(i).padStart(4, '0') + '.webp');
+  }
+  framePaths.push('assets/frames/last.png');
+
+  function resizeCanvas() {
+    if (!animCanvas || !ctx) return;
+    const dpr = window.devicePixelRatio || 1;
+    animCanvas.width = window.innerWidth * dpr;
+    animCanvas.height = window.innerHeight * dpr;
+    animCanvas.style.width = window.innerWidth + 'px';
+    animCanvas.style.height = window.innerHeight + 'px';
+    if (currentFrame >= 0) drawFrame(currentFrame);
+  }
+
+  function drawFrame(index) {
+    if (!ctx || !frameImages[index] || !frameImages[index].complete) return;
+    currentFrame = index;
+    const img = frameImages[index];
+    const cw = animCanvas.width;
+    const ch = animCanvas.height;
+    const imgR = img.naturalWidth / img.naturalHeight;
+    const canR = cw / ch;
+    const isPortrait = ch > cw;
+
+    if (isPortrait) {
+      // CONTAIN mode for portrait — show full image, red bg fill
+      ctx.fillStyle = '#ED1C24';
+      ctx.fillRect(0, 0, cw, ch);
+      let dw, dh, dx, dy;
+      if (imgR > canR) {
+        dw = cw;
+        dh = cw / imgR;
+        dx = 0;
+        dy = (ch - dh) / 2;
+      } else {
+        dh = ch;
+        dw = ch * imgR;
+        dx = (cw - dw) / 2;
+        dy = 0;
+      }
+      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, dx, dy, dw, dh);
+    } else {
+      // COVER mode for landscape — fill canvas, crop edges
+      let sx, sy, sw, sh;
+      if (imgR > canR) {
+        sh = img.naturalHeight;
+        sw = sh * canR;
+        sx = (img.naturalWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = img.naturalWidth;
+        sh = sw / canR;
+        sx = 0;
+        sy = (img.naturalHeight - sh) / 2;
+      }
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
+    }
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+
+  function preloadFrames() {
+    return new Promise((resolve) => {
+      let loaded = 0;
+      framePaths.forEach((src, i) => {
+        const img = new Image();
+        img.onload = img.onerror = () => {
+          loaded++;
+          const bar = document.getElementById('loaderProgress');
+          if (bar) bar.style.width = ((loaded / FRAME_COUNT) * 100) + '%';
+          if (loaded === FRAME_COUNT) resolve();
+        };
+        img.src = src;
+        frameImages[i] = img;
+      });
+    });
+  }
+
+  function setupScrollAnimation() {
+    if (!scrollAnimSection || !ctx) return;
+
+    const frameObj = { frame: 0 };
+    gsap.to(frameObj, {
+      frame: FRAME_COUNT - 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: scrollAnimSection,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.3,
+      },
+      onUpdate: () => {
+        const idx = Math.round(frameObj.frame);
+        if (idx !== currentFrame) drawFrame(idx);
+      }
+    });
+
+    // Trigger hero animation & show navbar when hero enters
+    ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        startHeroAnimation();
+        if (navbar) {
+          gsap.to(navbar, { opacity: 1, duration: 0.6, ease: 'power2.out' });
+          navbar.style.pointerEvents = '';
+        }
+      }
+    });
+  }
+
+  // ========================================
+  // PAGE LOADER — Preload frames then dismiss
   // ========================================
   const loader = document.getElementById('loader');
 
   if (prefersReducedMotion) {
-    // Skip loader entirely
     if (loader) loader.style.display = 'none';
+    if (scrollAnimSection) scrollAnimSection.style.display = 'none';
     document.querySelectorAll('.hero__script, .hero__title, .hero__subtitle, .hero__illustration, .hero__cta').forEach(el => {
       el.style.opacity = '1';
       el.style.transform = 'none';
     });
     if (lenis) lenis.start();
   } else {
-    const loaderTL = gsap.timeline({
-      onComplete: () => {
-        // Fade out loader with clipPath
+    // Hide navbar during scroll animation
+    if (navbar) {
+      navbar.style.opacity = '0';
+      navbar.style.pointerEvents = 'none';
+    }
+
+    preloadFrames().then(() => {
+      gsap.delayedCall(0.4, () => {
+        resizeCanvas();
+        drawFrame(0);
         gsap.to(loader, {
           clipPath: 'inset(0 0 100% 0)',
           duration: 0.8,
@@ -65,37 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
           onComplete: () => {
             loader.style.display = 'none';
             if (lenis) lenis.start();
-            startHeroAnimation();
+            setupScrollAnimation();
           }
         });
-      }
+      });
     });
-
-    // Logo icon fade in
-    loaderTL.to('.loader__icon', {
-      opacity: 1,
-      duration: 0.6,
-      ease: 'power2.out',
-    });
-
-    // Letters stagger up with bounce
-    loaderTL.to('.loader__letter', {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      stagger: 0.05,
-      ease: 'back.out(2)',
-    }, '-=0.2');
-
-    // Progress bar
-    loaderTL.to('.loader__progress', {
-      width: '100%',
-      duration: 1.2,
-      ease: 'power2.inOut',
-    }, '-=0.3');
-
-    // Hold briefly
-    loaderTL.to({}, { duration: 0.3 });
   }
 
   // ========================================
@@ -743,7 +851,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================
   // NAVBAR
   // ========================================
-  const navbar = document.getElementById('navbar');
+  // navbar already defined above (scroll animation section)
   const navBurger = document.getElementById('navBurger');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileLinks = document.querySelectorAll('.mobile-menu__link, .mobile-menu__cta');

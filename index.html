@@ -6,8 +6,10 @@
   <title>Ciao Settebello — L'Unique Buffet Italien à Volonté en Belgique</title>
   <meta name="description" content="Ciao Settebello, le seul buffet italien à volonté en Belgique. Antipasti, Pizza Napoletana, Pasta, Grillades & Dolci à Boussu, près de Mons.">
 
-  <!-- Preload critical font -->
+  <!-- Preload critical assets -->
   <link rel="preload" href="assets/fonts/Amfibia-BlackNarrow.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/frames/first.png" as="image">
+  <link rel="preload" href="assets/frames/last.png" as="image">
 
   <!-- GSAP -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
@@ -19,7 +21,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
@@ -29,29 +31,23 @@
   <!-- ==================== SCROLL PROGRESS ==================== -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- ==================== LOADER ==================== -->
+  <!-- ==================== LOADER (shows while frames preload) ==================== -->
   <div id="loader" class="loader">
     <div class="loader__inner">
-      <div class="loader__logo">
-        <img src="assets/logo-main.png" alt="" class="loader__icon">
-      </div>
-      <div class="loader__text">
-        <span class="loader__letter">S</span>
-        <span class="loader__letter">E</span>
-        <span class="loader__letter">T</span>
-        <span class="loader__letter">T</span>
-        <span class="loader__letter">E</span>
-        <span class="loader__letter">B</span>
-        <span class="loader__letter">E</span>
-        <span class="loader__letter">L</span>
-        <span class="loader__letter">L</span>
-        <span class="loader__letter">O</span>
-      </div>
+      <img src="assets/frames/first.png" alt="" class="loader__hero-img">
       <div class="loader__bar">
-        <div class="loader__progress"></div>
+        <div class="loader__progress" id="loaderProgress"></div>
       </div>
+      <p class="loader__hint">Chargement…</p>
     </div>
   </div>
+
+  <!-- ==================== SCROLL ANIMATION — Canvas ==================== -->
+  <section id="scrollAnimation" class="scroll-anim">
+    <div class="scroll-anim__sticky">
+      <canvas id="animCanvas" class="scroll-anim__canvas"></canvas>
+    </div>
+  </section>
 
   <!-- ==================== CUSTOM CURSOR ==================== -->
   <div id="cursor" class="cursor">
@@ -454,6 +450,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>
