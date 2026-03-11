@@ -313,7 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initConceptAnimations();
     initBuffetHorizontalScroll();
     initMenuBookFlip();
-    initGalerieAnimations();
     initStatsAnimations();
     initInfosAnimations();
     initFooterAnimations();
@@ -882,34 +881,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================
-  // GALERIE — Staggered grid animations
-  // ========================================
-  function initGalerieAnimations() {
-    if (prefersReducedMotion) return;
-
-    // Each column gets a stagger delay
-    document.querySelectorAll('.galerie__col').forEach((col, colIdx) => {
-      const items = col.querySelectorAll('.galerie__item');
-      items.forEach((item, i) => {
-        // Parallax on images
-        const img = item.querySelector('img');
-        if (img) {
-          gsap.set(img, { scale: 1.1 });
-          gsap.to(img, {
-            y: -30,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 2,
-            }
-          });
-        }
-      });
-    });
-  }
-
   // ========================================
   // STATS — Counters + Review Carousel
   // ========================================
@@ -1193,7 +1164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateCursor();
 
-    const interactiveSelectors = 'a, button, [data-magnetic], .buffet__slide, .galerie__item, .concept__panel, input, textarea';
+    const interactiveSelectors = 'a, button, [data-magnetic], .buffet__slide, .concept__panel, input, textarea';
 
     document.querySelectorAll(interactiveSelectors).forEach(el => {
       el.addEventListener('mouseenter', () => {
@@ -1205,11 +1176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.classList.remove('hover');
         cursorLabel.textContent = '';
       });
-    });
-
-    // Gallery items get "Voir" label
-    document.querySelectorAll('.galerie__item').forEach(el => {
-      el.setAttribute('data-cursor-label', 'Voir');
     });
 
     window.addEventListener('mousedown', () => cursor.classList.add('click'));
