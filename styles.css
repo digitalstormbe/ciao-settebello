@@ -98,10 +98,14 @@ ul, ol { list-style: none; }
 }
 .loader__inner { text-align: center; padding: 0 var(--side-pad); }
 .loader__logo {
-  width: 120px; height: 120px;
+  width: 100px; height: 100px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
+  padding: 12px;
+  background: var(--cream);
+  border-radius: 50%;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   animation: loaderPulse 1.5s ease-in-out infinite;
 }
 @keyframes loaderPulse {
