@@ -476,17 +476,11 @@ ul, ol { list-style: none; }
   padding: 8px;
 }
 
-.sticker--footer {
-  top: 10%; left: 8%;
-  background: var(--cream);
-  color: var(--red);
-}
 @keyframes stickerSpin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 @media (max-width: 768px) {
-  .sticker--footer { display: none; }
 }
 
 /* ============================================
@@ -1538,73 +1532,53 @@ ul, ol { list-style: none; }
 /* ============================================
    FOOTER — Bold CTA + Bottom Bar
    ============================================ */
+/* ============================================
+   FOOTER
+   ============================================ */
 .footer {
+  background: var(--black);
+  color: var(--cream);
+}
+
+/* --- CTA Hero Zone --- */
+.footer__cta {
+  position: relative;
+  padding: clamp(80px, 10vw, 140px) var(--side-pad);
+  text-align: center;
   background: var(--red);
 }
-.footer__cta-section {
-  position: relative;
-  overflow: hidden;
-  padding: var(--section-pad) var(--side-pad);
-  text-align: center;
-}
-
-/* Floating decorative elements */
-.footer__deco {
-  position: absolute;
-  color: var(--cream);
-  opacity: 0.08;
-}
-.footer__deco--1 {
-  top: 15%; left: 10%;
-  animation: floatDeco 8s ease-in-out infinite;
-}
-.footer__deco--2 {
-  bottom: 20%; right: 12%;
-  animation: floatDeco 6s ease-in-out infinite 2s;
-}
-.footer__deco--3 {
-  top: 30%; right: 18%;
-  animation: floatDeco 7s ease-in-out infinite 1s;
-}
-
-@keyframes floatDeco {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(15deg); }
-}
-
-.footer__script {
+.footer__eyebrow {
   font-family: var(--font-body);
-  font-size: clamp(14px, 1.8vw, 18px);
+  font-size: clamp(12px, 1.4vw, 16px);
   font-weight: 700;
   color: var(--cream);
-  opacity: 0.85;
+  opacity: 0.8;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 8px;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
 }
-.footer__big-title {
+.footer__heading {
   font-family: var(--font-display);
-  font-size: clamp(52px, 12vw, 150px);
+  font-size: clamp(48px, 11vw, 140px);
   text-transform: uppercase;
   line-height: 0.88;
   letter-spacing: -0.01em;
   margin-bottom: 44px;
 }
-.footer__title-fill { color: var(--cream); }
-.footer__title-outline {
+.footer__heading-fill { color: var(--cream); }
+.footer__heading-outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--cream);
 }
-
 .footer__btn {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   font-family: var(--font-display);
-  font-size: clamp(16px, 2.5vw, 22px);
+  font-size: clamp(14px, 2vw, 20px);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 22px 56px;
+  padding: 20px 52px;
   background: var(--cream);
   color: var(--red);
   border-radius: 50px;
@@ -1627,80 +1601,199 @@ ul, ol { list-style: none; }
   transform-origin: left;
 }
 .footer__btn span,
-.footer__btn svg {
-  position: relative; z-index: 1;
-}
+.footer__btn svg { position: relative; z-index: 1; }
 .footer__btn:hover {
   color: var(--cream);
   transform: scale(1.05);
 }
-.footer__btn:hover svg {
-  transform: translate(4px, -4px);
-}
+.footer__btn:hover svg { transform: translate(4px, -4px); }
 
-/* Footer bottom bar */
-.footer__bottom {
-  border-top: 1px solid rgba(255,245,230,0.15);
-  padding: 40px var(--side-pad);
+/* --- Main Footer Grid --- */
+.footer__main {
+  padding: clamp(60px, 8vw, 100px) var(--side-pad);
+  border-bottom: 1px solid rgba(255,245,230,0.08);
 }
-.footer__bottom-inner {
+.footer__grid {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: clamp(32px, 4vw, 64px);
 }
-.footer__brand {
+
+/* Brand column */
+.footer__col--brand {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 16px;
 }
-.footer__logo-img {
-  height: 40px; width: auto;
+.footer__logo {
+  width: 72px;
+  height: auto;
   filter: brightness(0) invert(1);
 }
-.footer__logo-text {
-  font-family: var(--font-display);
-  font-size: 20px;
+.footer__wordmark {
+  width: clamp(160px, 18vw, 220px);
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+.footer__tagline {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  opacity: 0.5;
+  margin-top: 4px;
 }
 .footer__socials {
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  margin-top: 8px;
 }
 .footer__social {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px; height: 46px;
+  width: 40px; height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(255,245,230,0.2);
+  border: 1px solid rgba(255,245,230,0.15);
   color: var(--cream);
   transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
 }
 .footer__social:hover {
-  background: var(--cream);
-  color: var(--red);
-  border-color: var(--cream);
+  background: var(--red);
+  color: var(--cream);
+  border-color: var(--red);
   transform: scale(1.1);
 }
-.footer__copy {
-  font-size: 13px;
+
+/* Column titles */
+.footer__col-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--cream);
-  opacity: 0.4;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--red);
+  display: inline-block;
 }
 
-@media (max-width: 768px) {
-  .footer__bottom-inner {
-    flex-direction: column;
+/* Lists */
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.footer__list li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--cream);
+  opacity: 0.6;
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: opacity 0.3s;
+}
+.footer__list li:hover { opacity: 1; }
+.footer__list li svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  opacity: 0.5;
+}
+.footer__list li a {
+  color: var(--cream);
+  transition: color 0.3s;
+}
+.footer__list li a:hover { color: var(--red); }
+
+/* Hours layout — day left, time right */
+.footer__col:nth-child(3) .footer__list li {
+  justify-content: space-between;
+  gap: 16px;
+}
+.footer__col:nth-child(3) .footer__list li span:first-child {
+  white-space: nowrap;
+  opacity: 1;
+  color: var(--cream);
+}
+.footer__col:nth-child(3) .footer__list li span:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Nav links */
+.footer__list--nav li { opacity: 0.5; }
+.footer__list--nav li:hover { opacity: 1; }
+.footer__list--nav a {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* --- Bottom bar --- */
+.footer__bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px var(--side-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.footer__copy {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--cream);
+  opacity: 0.3;
+}
+.footer__credit {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--cream);
+  opacity: 0.3;
+}
+.footer__credit a {
+  color: var(--cream);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.footer__credit a:hover { opacity: 1; }
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 32px;
+  }
+  .footer__col--brand {
+    grid-column: 1 / -1;
+    align-items: center;
     text-align: center;
   }
-  .footer__title-outline {
+  .footer__socials { justify-content: center; }
+  .footer__heading-outline {
     -webkit-text-stroke-width: 1.5px;
+  }
+}
+@media (max-width: 600px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer__col--brand { align-items: center; }
+  .footer__col-title { display: block; }
+  .footer__list li { justify-content: center; }
+  .footer__list--nav li { justify-content: center; }
+  .footer__col:nth-child(3) .footer__list li { justify-content: center; }
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
   }
 }
 
