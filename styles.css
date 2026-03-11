@@ -174,38 +174,27 @@ ul, ol { list-style: none; }
   justify-content: center;
 }
 
-/* --- Eyebrow with decorative lines --- */
+/* --- Eyebrow — Glassmorphism rectangle --- */
 .hero-text__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
   font-family: var(--font-body);
   font-size: 11px;
   color: var(--cream);
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 36px;
   opacity: 0;
 }
-.hero-text__eyebrow-line {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cream), transparent);
-  transform-origin: center;
-  opacity: 0.6;
-}
-.hero-text__eyebrow-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.hero-text__eyebrow svg {
-  color: var(--cream);
-  flex-shrink: 0;
-  opacity: 0.9;
-  animation: heroGlow 3s ease-in-out infinite;
+.hero-text__eyebrow--glass {
+  padding: 10px 24px;
+  border-radius: 6px;
+  background: rgba(255, 245, 230, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 245, 230, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255,245,230,0.06);
 }
 
 /* --- Title: MAMMA + MIA ! --- */
@@ -280,16 +269,43 @@ ul, ol { list-style: none; }
   text-shadow: 0 2px 12px rgba(0,0,0,0.2);
 }
 
-/* --- Description — more visible --- */
-.hero-text__desc {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--cream);
-  opacity: 0;
-  line-height: 1.75;
-  max-width: 380px;
+/* --- Rotating circle badge --- */
+.hero-text__spinner {
+  position: relative;
+  width: 120px;
+  height: 120px;
   margin-bottom: 36px;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  opacity: 0;
+}
+.hero-text__spinner svg {
+  animation: spinBadge 12s linear infinite;
+}
+.hero-text__spinner-text {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  fill: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.hero-text__spinner-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 245, 230, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 245, 230, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream);
+}
+@keyframes spinBadge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* --- Actions --- */
@@ -366,10 +382,10 @@ ul, ol { list-style: none; }
   .hero-text__title { align-items: center; }
   .hero-text__line { font-size: clamp(52px, 15vw, 90px); }
   .hero-text__line--outline { font-size: clamp(56px, 17vw, 100px); }
-  .hero-text__desc { max-width: 100%; }
+  .hero-text__spinner { width: 100px; height: 100px; }
+  .hero-text__spinner svg { width: 100px; height: 100px; }
   .hero-text__actions { align-items: center; }
   .hero-text__sep { margin-left: auto; margin-right: auto; }
-  .hero-text__eyebrow-line { width: 28px; }
 }
 
 /* ============================================

@@ -179,9 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroLine2 = document.getElementById('heroLine2');
     const heroSep = document.getElementById('heroSep');
     const heroTagline = document.getElementById('heroTagline');
-    const heroDesc = document.getElementById('heroDesc');
+    const heroSpinner = document.getElementById('heroSpinner');
     const heroActions = document.getElementById('heroActions');
-    const heroEyebrowLines = document.querySelectorAll('.hero-text__eyebrow-line');
 
     const heroTL = gsap.timeline({
       scrollTrigger: {
@@ -192,21 +191,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Eyebrow: fade in with decorative lines expanding
+    // Eyebrow: glassmorphism rectangle fade in
     if (heroEyebrow) {
       heroTL.fromTo(heroEyebrow,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' },
+        { opacity: 0, y: 20, scale: 0.9 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.05, ease: 'power2.out' },
         0.01
       );
-      // Decorative lines expand outward
-      if (heroEyebrowLines.length) {
-        heroTL.fromTo(heroEyebrowLines,
-          { scaleX: 0 },
-          { scaleX: 1, duration: 0.04, stagger: 0.01, ease: 'power3.out' },
-          0.03
-        );
-      }
     }
 
     // MAMMA — dramatic 3D entrance with letter-spacing
@@ -245,11 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     }
 
-    // Description — visible and clear
-    if (heroDesc) {
-      heroTL.fromTo(heroDesc,
-        { opacity: 0, y: 20 },
-        { opacity: 0.85, y: 0, duration: 0.06, ease: 'power2.out' },
+    // Rotating badge — spin in with scale
+    if (heroSpinner) {
+      heroTL.fromTo(heroSpinner,
+        { opacity: 0, scale: 0, rotation: -90 },
+        { opacity: 1, scale: 1, rotation: 0, duration: 0.08, ease: 'back.out(1.7)' },
         0.30
       );
     }
