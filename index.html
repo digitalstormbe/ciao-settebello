@@ -22,7 +22,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=23">
+  <link rel="stylesheet" href="styles.css?v=24">
 </head>
 <body>
 
@@ -416,64 +416,105 @@
     </div>
   </section>
 
-  <!-- ==================== STATS / AVIS — Dark Cinematic ==================== -->
+  <!-- ==================== STATS / AVIS — Dark 2-Column ==================== -->
   <section class="stats">
     <div class="stats__bg-text" aria-hidden="true">SETTEBELLO</div>
 
     <div class="stats__inner">
-      <div class="stats__counters">
-        <div class="stats__counter" data-reveal>
-          <span class="stats__value" data-count="200">0</span>
-          <span class="stats__plus">+</span>
-          <div class="stats__counter-label">plats au buffet</div>
+      <!-- Left column: title + counters -->
+      <div class="stats__left">
+        <div class="stats__header">
+          <p class="stats__eyebrow" data-reveal>ce que nos clients en pensent</p>
+          <h2 class="stats__title" data-split-words>ILS ONT<br>ADORE</h2>
         </div>
-        <div class="stats__counter" data-reveal>
-          <span class="stats__value" data-count="10">0</span>
-          <div class="stats__counter-label">ans d'experience</div>
+
+        <div class="stats__nav">
+          <button class="stats__nav-btn" id="reviewPrev" aria-label="Avis precedent">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="stats__nav-btn" id="reviewNext" aria-label="Avis suivant">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
-        <div class="stats__counter" data-reveal>
-          <span class="stats__value">4.5</span>
-          <span class="stats__star">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </span>
-          <div class="stats__counter-label">TripAdvisor</div>
-        </div>
-        <div class="stats__counter" data-reveal>
-          <span class="stats__value" data-count="1000">0</span>
-          <span class="stats__plus">+</span>
-          <div class="stats__counter-label">clients par semaine</div>
+
+        <div class="stats__counters">
+          <div class="stats__counter" data-reveal>
+            <span class="stats__value" data-count="200">0</span>
+            <span class="stats__plus">+</span>
+            <div class="stats__counter-label">plats au buffet</div>
+          </div>
+          <div class="stats__counter" data-reveal>
+            <span class="stats__value" data-count="3">0</span>
+            <div class="stats__counter-label">ans d'experience</div>
+          </div>
+          <div class="stats__counter" data-reveal>
+            <span class="stats__value">4.5</span>
+            <span class="stats__star">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <div class="stats__counter-label">TripAdvisor</div>
+          </div>
+          <div class="stats__counter" data-reveal>
+            <span class="stats__value" data-count="1000">0</span>
+            <span class="stats__plus">+</span>
+            <div class="stats__counter-label">clients par semaine</div>
+          </div>
         </div>
       </div>
 
-      <div class="stats__divider"></div>
-
-      <div class="stats__reviews">
-        <div class="stats__review">
-          <div class="stats__quote-mark">&ldquo;</div>
-          <blockquote class="stats__quote-text">Le meilleur buffet italien que j'ai jamais teste ! La qualite des produits est incroyable et le choix est immense.</blockquote>
-          <div class="stats__review-meta">
-            <div class="stats__stars" aria-label="5 etoiles">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <!-- Right column: review cards carousel -->
+      <div class="stats__right">
+        <div class="stats__carousel" id="reviewCarousel">
+          <div class="stats__card">
+            <div class="stats__quote-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" opacity="0.15"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg>
             </div>
-            <span class="stats__author">Marie D. &mdash; Google Reviews</span>
+            <blockquote class="stats__card-text">Le meilleur buffet italien que j'ai jamais teste ! La qualite des produits est incroyable et le choix est immense.</blockquote>
+            <div class="stats__card-footer">
+              <div class="stats__card-stars" aria-label="5 etoiles">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="stats__card-author">Marie D.</span>
+              <span class="stats__card-source">Google Reviews</span>
+            </div>
           </div>
-        </div>
-        <div class="stats__review">
-          <div class="stats__quote-mark">&ldquo;</div>
-          <blockquote class="stats__quote-text">Ambiance familiale, cuisine authentique. On se croirait vraiment en Italie ! Les pizzas sont a tomber.</blockquote>
-          <div class="stats__review-meta">
-            <div class="stats__stars" aria-label="5 etoiles">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div class="stats__card">
+            <div class="stats__quote-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" opacity="0.15"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg>
             </div>
-            <span class="stats__author">Thomas L. &mdash; TripAdvisor</span>
+            <blockquote class="stats__card-text">Ambiance familiale, cuisine authentique. On se croirait vraiment en Italie ! Les pizzas sont a tomber.</blockquote>
+            <div class="stats__card-footer">
+              <div class="stats__card-stars" aria-label="5 etoiles">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="stats__card-author">Thomas L.</span>
+              <span class="stats__card-source">TripAdvisor</span>
+            </div>
+          </div>
+          <div class="stats__card">
+            <div class="stats__quote-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" opacity="0.15"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg>
+            </div>
+            <blockquote class="stats__card-text">Un concept genial ! Buffet a volonte avec des produits frais, un large choix de pizzas et des desserts delicieux. On y retourne chaque semaine.</blockquote>
+            <div class="stats__card-footer">
+              <div class="stats__card-stars" aria-label="5 etoiles">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="stats__card-author">Sophie B.</span>
+              <span class="stats__card-source">Google Reviews</span>
+            </div>
           </div>
         </div>
       </div>
@@ -575,6 +616,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=23"></script>
+  <script src="script.js?v=24"></script>
 </body>
 </html>

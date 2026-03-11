@@ -877,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================
-  // STATS — Counters + reviews
+  // STATS — Counters + Review Carousel
   // ========================================
   function initStatsAnimations() {
     if (prefersReducedMotion) return;
@@ -905,35 +905,117 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Divider reveal
-    const divider = document.querySelector('.stats__divider');
-    if (divider) {
-      gsap.from(divider, {
-        scaleX: 0,
-        duration: 1.2,
-        ease: 'power3.inOut',
-        scrollTrigger: {
-          trigger: divider,
-          start: 'top 85%',
-          once: true,
+    // Left column entrance
+    gsap.from('.stats__header', {
+      opacity: 0, y: 40,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.stats__header', start: 'top 85%', once: true }
+    });
+    gsap.from('.stats__nav', {
+      opacity: 0, y: 20,
+      duration: 0.8,
+      delay: 0.3,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.stats__header', start: 'top 85%', once: true }
+    });
+
+    // Review carousel
+    initReviewCarousel();
+  }
+
+  function initReviewCarousel() {
+    const cards = document.querySelectorAll('.stats__card');
+    const prevBtn = document.getElementById('reviewPrev');
+    const nextBtn = document.getElementById('reviewNext');
+    if (!cards.length) return;
+
+    let current = 0;
+    let isAnimating = false;
+
+    // Set first card active
+    cards[0].classList.add('is-active');
+
+    function goTo(index, direction) {
+      if (isAnimating || index === current) return;
+      isAnimating = true;
+
+      const outCard = cards[current];
+      const inCard = cards[index];
+      const xOut = direction === 'next' ? -40 : 40;
+      const xIn = direction === 'next' ? 40 : -40;
+
+      // Fade out current
+      gsap.to(outCard, {
+        opacity: 0,
+        x: xOut,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+          outCard.classList.remove('is-active');
+          gsap.set(outCard, { x: 0 });
         }
+      });
+
+      // Fade in new card
+      inCard.classList.add('is-active');
+      gsap.fromTo(inCard,
+        { opacity: 0, x: xIn },
+        {
+          opacity: 1, x: 0,
+          duration: 0.5,
+          delay: 0.15,
+          ease: 'power3.out',
+          onComplete: () => {
+            isAnimating = false;
+          }
+        }
+      );
+
+      current = index;
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        const prev = (current - 1 + cards.length) % cards.length;
+        goTo(prev, 'prev');
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const next = (current + 1) % cards.length;
+        goTo(next, 'next');
       });
     }
 
-    // Reviews slide in
-    document.querySelectorAll('.stats__review').forEach((review, i) => {
-      gsap.from(review, {
-        opacity: 0,
-        x: i % 2 === 0 ? -60 : 60,
-        y: 20,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: review,
-          start: 'top 88%',
-          once: true,
-        }
+    // Auto-advance every 6s
+    let autoInterval = setInterval(() => {
+      const next = (current + 1) % cards.length;
+      goTo(next, 'next');
+    }, 6000);
+
+    // Pause auto on hover
+    const carousel = document.getElementById('reviewCarousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', () => clearInterval(autoInterval));
+      carousel.addEventListener('mouseleave', () => {
+        autoInterval = setInterval(() => {
+          const next = (current + 1) % cards.length;
+          goTo(next, 'next');
+        }, 6000);
       });
+    }
+
+    // Entrance animation for first card
+    gsap.from(cards[0], {
+      opacity: 0, y: 50,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.stats__right',
+        start: 'top 80%',
+        once: true,
+      }
     });
   }
 
