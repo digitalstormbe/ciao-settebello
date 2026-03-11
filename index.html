@@ -22,7 +22,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=36">
+  <link rel="stylesheet" href="styles.css?v=37">
 </head>
 <body>
 
@@ -252,107 +252,112 @@
     </div>
   </section>
 
-  <!-- ==================== BUFFET & MENU — Split Layout ==================== -->
-  <section id="buffet" class="buffet-menu">
-    <div class="buffet-menu__grid">
+  <!-- ==================== BUFFET — Horizontal Scroll Showcase ==================== -->
+  <section id="buffet" class="buffet">
+    <!-- Large background text -->
+    <div class="buffet__bg-text" aria-hidden="true">BUFFET</div>
 
-      <!-- Left column: Buffet Carousel -->
-      <div class="buffet-menu__left">
-        <div class="buffet-menu__header">
-          <p class="buffet-menu__eyebrow" data-reveal>un voyage culinaire</p>
-          <h2 class="buffet-menu__title" data-split-words>NOTRE<br>BUFFET</h2>
-        </div>
+    <div class="buffet__header">
+      <p class="buffet__eyebrow" data-reveal>un voyage culinaire</p>
+      <h2 class="buffet__title" data-split-words>NOTRE BUFFET</h2>
+    </div>
 
-        <div class="buffet__carousel-wrap">
-          <div class="buffet__carousel" id="buffetCarousel">
-            <article class="buffet__slide">
-              <div class="buffet__slide-img">
-                <img src="assets/buffet/antipasti.jpg" alt="Antipasti italiens" loading="lazy">
-              </div>
-              <div class="buffet__slide-content">
-                <span class="buffet__slide-num">01</span>
-                <h3 class="buffet__slide-name">Antipasti</h3>
-                <p class="buffet__slide-desc">Bruschette, caprese, legumes grilles et charcuterie italienne</p>
-              </div>
-            </article>
-            <article class="buffet__slide">
-              <div class="buffet__slide-img">
-                <img src="assets/buffet/pizze.jpg" alt="Pizza Napoletana" loading="lazy">
-              </div>
-              <div class="buffet__slide-content">
-                <span class="buffet__slide-num">02</span>
-                <h3 class="buffet__slide-name">Pizze</h3>
-                <p class="buffet__slide-desc">Cuites a la minute dans notre four traditionnel a bois</p>
-              </div>
-            </article>
-            <article class="buffet__slide">
-              <div class="buffet__slide-img">
-                <img src="assets/buffet/primi-piatti.jpg" alt="Pasta Fresca" loading="lazy">
-              </div>
-              <div class="buffet__slide-content">
-                <span class="buffet__slide-num">03</span>
-                <h3 class="buffet__slide-name">Primi Piatti</h3>
-                <p class="buffet__slide-desc">Pates fraiches preparees dans la meule de parmesan</p>
-              </div>
-            </article>
-            <article class="buffet__slide">
-              <div class="buffet__slide-img">
-                <img src="assets/buffet/secondi.jpg" alt="Grillades" loading="lazy">
-              </div>
-              <div class="buffet__slide-content">
-                <span class="buffet__slide-num">04</span>
-                <h3 class="buffet__slide-name">Secondi</h3>
-                <p class="buffet__slide-desc">Viandes grillees et saveurs mediterraneennes a la braise</p>
-              </div>
-            </article>
-            <article class="buffet__slide">
-              <div class="buffet__slide-img">
-                <img src="assets/buffet/dolci.jpg" alt="Desserts italiens" loading="lazy">
-              </div>
-              <div class="buffet__slide-content">
-                <span class="buffet__slide-num">05</span>
-                <h3 class="buffet__slide-name">Dolci</h3>
-                <p class="buffet__slide-desc">Tiramisu, cannoli, panna cotta et fontaine de chocolat</p>
-              </div>
-            </article>
+    <div class="buffet__carousel-wrap">
+      <div class="buffet__carousel" id="buffetCarousel">
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="assets/buffet/antipasti.jpg" alt="Antipasti italiens" loading="lazy">
           </div>
-        </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">01</span>
+            <h3 class="buffet__slide-name">Antipasti</h3>
+            <p class="buffet__slide-desc">Bruschette, caprese, legumes grilles et charcuterie italienne</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="assets/buffet/pizze.jpg" alt="Pizza Napoletana" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">02</span>
+            <h3 class="buffet__slide-name">Pizze</h3>
+            <p class="buffet__slide-desc">Cuites a la minute dans notre four traditionnel a bois</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="assets/buffet/primi-piatti.jpg" alt="Pasta Fresca" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">03</span>
+            <h3 class="buffet__slide-name">Primi Piatti</h3>
+            <p class="buffet__slide-desc">Pates fraiches preparees dans la meule de parmesan</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="assets/buffet/secondi.jpg" alt="Grillades" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">04</span>
+            <h3 class="buffet__slide-name">Secondi</h3>
+            <p class="buffet__slide-desc">Viandes grillees et saveurs mediterraneennes a la braise</p>
+          </div>
+        </article>
+        <article class="buffet__slide">
+          <div class="buffet__slide-img">
+            <img src="assets/buffet/dolci.jpg" alt="Desserts italiens" loading="lazy">
+          </div>
+          <div class="buffet__slide-content">
+            <span class="buffet__slide-num">05</span>
+            <h3 class="buffet__slide-name">Dolci</h3>
+            <p class="buffet__slide-desc">Tiramisu, cannoli, panna cotta et fontaine de chocolat</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="buffet__footer">
+      <a href="#menu" class="buffet__cta" data-magnetic>
+        <span>DECOUVRIR LA CARTE</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== MENU — Book Flip 3D ==================== -->
+  <section id="menu" class="menu-section">
+    <div class="menu-section__inner">
+      <div class="menu-section__header">
+        <p class="menu-section__eyebrow" data-reveal>notre carte</p>
+        <h2 class="menu-section__title" data-split-words>DECOUVREZ<br>LE MENU</h2>
       </div>
 
-      <!-- Right column: Menu Book -->
-      <div class="buffet-menu__right">
-        <div class="buffet-menu__header">
-          <p class="buffet-menu__eyebrow" data-reveal>notre carte</p>
-          <h2 class="buffet-menu__title" data-split-words>LE<br>MENU</h2>
+      <div class="menu-book" id="menuBook">
+        <div class="menu-book__cover" id="menuCover">
+          <img src="assets/menu/cover.webp" alt="Couverture du menu Ciao Settebello" draggable="false">
         </div>
-
-        <div class="menu-book" id="menuBook">
-          <div class="menu-book__cover" id="menuCover">
-            <img src="assets/menu/cover.webp" alt="Couverture du menu Ciao Settebello" draggable="false">
-          </div>
-          <div class="menu-book__interior" id="menuInterior">
-            <img src="assets/menu/interior.webp" alt="Menu interieur Ciao Settebello" draggable="false">
-          </div>
-          <div class="menu-book__back" id="menuBack">
-            <img src="assets/menu/back.webp" alt="Dos du menu Ciao Settebello" draggable="false">
-          </div>
-          <button class="menu-book__nav menu-book__nav--next" id="menuNext" aria-label="Page suivante" style="display:none;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-          <button class="menu-book__nav menu-book__nav--prev" id="menuPrev" aria-label="Page precedente" style="display:none;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="menu-book__close" id="menuClose" aria-label="Fermer le menu" style="display:none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
+        <div class="menu-book__interior" id="menuInterior">
+          <img src="assets/menu/interior.webp" alt="Menu interieur Ciao Settebello" draggable="false">
         </div>
-
-        <button class="menu-section__cta" id="menuOpen">
-          <span>Ouvrir le menu</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <div class="menu-book__back" id="menuBack">
+          <img src="assets/menu/back.webp" alt="Dos du menu Ciao Settebello" draggable="false">
+        </div>
+        <button class="menu-book__nav menu-book__nav--next" id="menuNext" aria-label="Page suivante" style="display:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <button class="menu-book__nav menu-book__nav--prev" id="menuPrev" aria-label="Page precedente" style="display:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="menu-book__close" id="menuClose" aria-label="Fermer le menu" style="display:none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
 
+      <button class="menu-section__cta" id="menuOpen">
+        <span>Ouvrir le menu</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </button>
     </div>
   </section>
 
@@ -589,6 +594,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=36"></script>
+  <script src="script.js?v=37"></script>
 </body>
 </html>
