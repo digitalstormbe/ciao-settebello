@@ -22,7 +22,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=26">
+  <link rel="stylesheet" href="styles.css?v=27">
 </head>
 <body>
 
@@ -48,27 +48,30 @@
     <div class="scroll-anim__sticky">
       <div class="hero-text" id="heroText">
         <div class="hero-text__eyebrow hero-text__eyebrow--glass" id="heroEyebrow">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
           L'UNIQUE EN BELGIQUE
         </div>
         <div class="hero-text__title">
           <span class="hero-text__line hero-text__line--filled" id="heroLine1">MAMMA</span>
-          <span class="hero-text__line hero-text__line--outline" id="heroLine2">MIA !</span>
+          <div class="hero-text__mia-row">
+            <span class="hero-text__line hero-text__line--outline" id="heroLine2">MIA !</span>
+            <div class="hero-text__spinner" id="heroSpinner">
+              <svg viewBox="0 0 200 200" width="120" height="120">
+                <defs>
+                  <path id="circlePath" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"/>
+                </defs>
+                <text class="hero-text__spinner-text">
+                  <textPath href="#circlePath" startOffset="0%">BUFFET ITALIEN A VOLONTE • BUFFET ITALIEN A VOLONTE •</textPath>
+                </text>
+              </svg>
+              <span class="hero-text__spinner-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </span>
+            </div>
+          </div>
         </div>
         <div class="hero-text__sep" id="heroSep"></div>
         <p class="hero-text__tagline" id="heroTagline">A VOLONTE,<br>COMME CHEZ LA NONNA.</p>
-        <div class="hero-text__spinner" id="heroSpinner">
-          <svg viewBox="0 0 200 200" width="120" height="120">
-            <defs>
-              <path id="circlePath" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"/>
-            </defs>
-            <text class="hero-text__spinner-text">
-              <textPath href="#circlePath" startOffset="0%">BUFFET ITALIEN A VOLONTE • BUFFET ITALIEN A VOLONTE •</textPath>
-            </text>
-          </svg>
-          <span class="hero-text__spinner-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-          </span>
-        </div>
         <div class="hero-text__actions" id="heroActions">
           <a href="https://bookings.zenchef.com/results?rid=360613&pid=1001" target="_blank" rel="noopener" class="hero-text__cta">
             <span>Reserver une table</span>
@@ -620,6 +623,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=26"></script>
+  <script src="script.js?v=27"></script>
 </body>
 </html>

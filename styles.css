@@ -178,6 +178,7 @@ ul, ol { list-style: none; }
 .hero-text__eyebrow {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   font-family: var(--font-body);
   font-size: 11px;
   color: var(--cream);
@@ -186,9 +187,15 @@ ul, ol { list-style: none; }
   font-weight: 700;
   margin-bottom: 36px;
   opacity: 0;
+  width: fit-content;
+  align-self: flex-start;
+}
+.hero-text__eyebrow svg {
+  flex-shrink: 0;
+  opacity: 0.9;
 }
 .hero-text__eyebrow--glass {
-  padding: 10px 24px;
+  padding: 10px 20px;
   border-radius: 6px;
   background: rgba(255, 245, 230, 0.08);
   backdrop-filter: blur(12px);
@@ -204,6 +211,11 @@ ul, ol { list-style: none; }
   line-height: 0.85;
   margin-bottom: 28px;
   perspective: 800px;
+}
+.hero-text__mia-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
 }
 .hero-text__line {
   font-family: var(--font-display);
@@ -272,10 +284,14 @@ ul, ol { list-style: none; }
 /* --- Rotating circle badge --- */
 .hero-text__spinner {
   position: relative;
-  width: 120px;
-  height: 120px;
-  margin-bottom: 36px;
+  width: clamp(80px, 8vw, 120px);
+  height: clamp(80px, 8vw, 120px);
+  flex-shrink: 0;
   opacity: 0;
+}
+.hero-text__spinner svg:first-child {
+  width: 100%;
+  height: 100%;
 }
 .hero-text__spinner svg {
   animation: spinBadge 12s linear infinite;
@@ -378,12 +394,12 @@ ul, ol { list-style: none; }
     text-align: center;
     align-items: center;
   }
-  .hero-text__eyebrow { justify-content: center; }
+  .hero-text__eyebrow { justify-content: center; align-self: center; }
   .hero-text__title { align-items: center; }
+  .hero-text__mia-row { justify-content: center; }
   .hero-text__line { font-size: clamp(52px, 15vw, 90px); }
   .hero-text__line--outline { font-size: clamp(56px, 17vw, 100px); }
-  .hero-text__spinner { width: 100px; height: 100px; }
-  .hero-text__spinner svg { width: 100px; height: 100px; }
+  .hero-text__spinner { width: 70px; height: 70px; }
   .hero-text__actions { align-items: center; }
   .hero-text__sep { margin-left: auto; margin-right: auto; }
 }
