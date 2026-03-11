@@ -602,65 +602,92 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================
-  // BUFFET — Horizontal Scroll Showcase
+  // BUFFET — 3D Stacked Cards
   // ========================================
   function initBuffetHorizontalScroll() {
     if (prefersReducedMotion) return;
 
-    const buffetCarousel = document.getElementById('buffetCarousel');
     const buffetSection = document.getElementById('buffet');
+    const cards = document.querySelectorAll('.buffet__card');
+    const ghostNum = document.querySelector('.buffet__ghost-num');
+    const counterCurrent = document.querySelector('.buffet__counter-current');
 
-    if (!buffetCarousel || !buffetSection) return;
+    if (!buffetSection || !cards.length) return;
 
-    const getScrollAmount = () => {
-      return -(buffetCarousel.scrollWidth - window.innerWidth + 40);
-    };
+    const totalCards = cards.length;
+    const nums = ['01', '02', '03', '04', '05'];
 
-    gsap.to(buffetCarousel, {
-      x: getScrollAmount,
-      ease: 'none',
+    // Set initial stacked positions: bottom card first (index 0), top card last (index 4)
+    cards.forEach((card, i) => {
+      const stackOffset = (totalCards - 1 - i) * 8;
+      const stackRotation = (totalCards - 1 - i) * 1.5;
+      gsap.set(card, {
+        y: stackOffset,
+        rotation: stackRotation,
+        zIndex: i + 1,
+      });
+    });
+
+    // Master timeline pinned to section
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: buffetSection,
         start: 'top top',
-        end: () => `+=${Math.abs(getScrollAmount())}`,
+        end: () => `+=${window.innerHeight * 4}`,
         pin: true,
-        scrub: 1.5,
+        scrub: 1,
         invalidateOnRefresh: true,
         anticipatePin: 1,
       }
     });
 
-    // Background text parallax
-    const buffetBgText = document.querySelector('.buffet__bg-text');
-    if (buffetBgText) {
-      gsap.to(buffetBgText, {
-        x: -120,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: buffetSection,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 3,
+    // Animate each card flying away (top card first = last in DOM = index totalCards-1)
+    for (let i = totalCards - 1; i >= 1; i--) {
+      const card = cards[i];
+      const progress = (totalCards - 1 - i) / (totalCards - 1);
+      const nextCardIndex = i - 1;
+
+      tl.to(card, {
+        y: -300,
+        rotation: gsap.utils.random(-8, 8),
+        rotateX: 15,
+        scale: 0.85,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.in',
+        onStart: () => {
+          if (ghostNum) ghostNum.textContent = nums[nextCardIndex] || nums[0];
+          if (counterCurrent) counterCurrent.textContent = String(totalCards - i + 1);
         }
-      });
+      }, progress * 0.85);
+
+      // Restack remaining cards smoothly
+      if (i > 1) {
+        for (let j = i - 1; j >= 0; j--) {
+          const belowCard = cards[j];
+          const newStackPos = (i - 1 - j);
+          tl.to(belowCard, {
+            y: newStackPos * 8,
+            rotation: newStackPos * 1.5,
+            duration: 0.5,
+            ease: 'power2.out',
+          }, progress * 0.85);
+        }
+      }
     }
 
-    // Slide entrance animation
-    document.querySelectorAll('.buffet__slide').forEach((slide, i) => {
-      gsap.from(slide, {
-        opacity: 0,
-        y: 60,
-        scale: 0.92,
-        rotation: gsap.utils.random(-3, 3),
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: slide,
-          start: 'top 95%',
-          once: true,
-        },
-        delay: i * 0.08,
-      });
+    // Entrance animation for the stack
+    gsap.from('.buffet__stack', {
+      y: 80,
+      opacity: 0,
+      scale: 0.92,
+      duration: 1.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: buffetSection,
+        start: 'top 80%',
+        once: true,
+      }
     });
   }
 
