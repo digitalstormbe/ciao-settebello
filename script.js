@@ -602,48 +602,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================
-  // BUFFET — Horizontal Scroll with GSAP pin
+  // BUFFET — Horizontal Scroll within split layout
   // ========================================
   function initBuffetHorizontalScroll() {
     if (prefersReducedMotion) return;
 
     const buffetCarousel = document.getElementById('buffetCarousel');
-    const buffetSection = document.getElementById('buffet');
+    const carouselWrap = document.querySelector('.buffet__carousel-wrap');
 
-    if (!buffetCarousel || !buffetSection) return;
+    if (!buffetCarousel || !carouselWrap) return;
 
     const getScrollAmount = () => {
-      return -(buffetCarousel.scrollWidth - window.innerWidth + 40);
+      return -(buffetCarousel.scrollWidth - carouselWrap.offsetWidth);
     };
 
+    // Horizontal drag + scroll within the carousel container
     gsap.to(buffetCarousel, {
       x: getScrollAmount,
       ease: 'none',
       scrollTrigger: {
-        trigger: buffetSection,
-        start: 'top top',
+        trigger: carouselWrap,
+        start: 'top 60%',
         end: () => `+=${Math.abs(getScrollAmount())}`,
-        pin: true,
         scrub: 1.5,
         invalidateOnRefresh: true,
-        anticipatePin: 1,
       }
     });
-
-    // Background text parallax
-    const buffetBgText = document.querySelector('.buffet__bg-text');
-    if (buffetBgText) {
-      gsap.to(buffetBgText, {
-        x: -120,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: buffetSection,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 3,
-        }
-      });
-    }
 
     // Slide entrance animation
     document.querySelectorAll('.buffet__slide').forEach((slide, i) => {
@@ -863,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
       duration: 1.2,
       ease: 'power3.out',
       scrollTrigger: {
-        trigger: '.menu-section',
+        trigger: '.buffet-menu__right',
         start: 'top 70%',
         once: true,
       }
