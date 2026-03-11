@@ -616,21 +616,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const totalCards = cards.length;
     const nums = ['01', '02', '03', '04', '05'];
-    const flyCount = totalCards - 1; // 4 cards fly away, card 0 stays
+    const flyCount = totalCards - 1; // 4 cards fly away, last card stays
 
     // Pre-calculate random end rotations so scrub stays deterministic
     const endRotations = Array.from({ length: totalCards }, () =>
       gsap.utils.random(-8, 8)
     );
 
-    // Initial stacked positions: index 0 = bottom, index 4 = top (highest z-index)
+    // Initial stacked positions: index 0 = top (highest z-index), index 4 = bottom
+    // This way Antipasti (01) shows first, Dolci (05) shows last
     cards.forEach((card, i) => {
-      const stackOffset = (totalCards - 1 - i) * 8;
-      const stackRotation = (totalCards - 1 - i) * 1.5;
+      const stackOffset = i * 8;
+      const stackRotation = i * 1.5;
       gsap.set(card, {
         y: stackOffset,
         rotation: stackRotation,
-        zIndex: i + 1,
+        zIndex: totalCards - i,
       });
     });
 
@@ -646,19 +647,18 @@ document.addEventListener('DOMContentLoaded', () => {
         anticipatePin: 1,
         onUpdate: (self) => {
           // Update ghost number and counter based on scroll progress
-          // Switches text at ~70% through each fly-away phase
+          // Switches text at ~70% through each card's fly-away phase
           const p = self.progress;
           const step = Math.min(Math.floor(p * flyCount + 0.3), flyCount);
-          const visibleIndex = Math.max(totalCards - 1 - step, 0);
-          if (ghostNum) ghostNum.textContent = nums[visibleIndex];
+          if (ghostNum) ghostNum.textContent = nums[Math.min(step, totalCards - 1)];
           if (counterCurrent) counterCurrent.textContent = String(step + 1);
         }
       }
     });
 
-    // Animate each card flying away sequentially (top card first)
+    // Animate cards flying away sequentially: card 0 first, card 3 last, card 4 stays
     for (let step = 0; step < flyCount; step++) {
-      const cardIndex = totalCards - 1 - step; // 4, 3, 2, 1
+      const cardIndex = step; // 0, 1, 2, 3
       const card = cards[cardIndex];
       const label = `fly${step}`;
 
@@ -676,8 +676,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }, label);
 
       // Restack remaining cards simultaneously
-      for (let j = cardIndex - 1; j >= 0; j--) {
-        const newStackPos = cardIndex - 1 - j;
+      for (let j = cardIndex + 1; j < totalCards; j++) {
+        const newStackPos = j - cardIndex - 1;
         tl.to(cards[j], {
           y: newStackPos * 8,
           rotation: newStackPos * 1.5,
