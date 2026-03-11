@@ -532,41 +532,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================
-  // CONCEPT — Sticker + pillar animations
+  // CONCEPT — Cinematic Scroll Reveal
   // ========================================
   function initConceptAnimations() {
     if (prefersReducedMotion) return;
 
-    // Sticker entrance
-    const conceptSticker = document.querySelector('.sticker--concept');
-    if (conceptSticker) {
-      gsap.from(conceptSticker, {
-        scale: 0,
-        rotation: -180,
-        opacity: 0,
-        duration: 1,
-        ease: 'back.out(2)',
-        scrollTrigger: {
-          trigger: '.concept__img-wrap',
-          start: 'top 70%',
-          once: true,
+    const section = document.getElementById('concept');
+    const sticky = document.querySelector('.concept__sticky');
+    if (!section || !sticky) return;
+
+    const bgImg = document.querySelector('.concept__bg-img');
+    const introContent = document.querySelector('.concept__intro-content');
+    const panelsWrap = document.querySelector('.concept__panels');
+    const panels = document.querySelectorAll('.concept__panel');
+    const summary = document.querySelector('.concept__summary');
+    const isMobile = window.innerWidth <= 900;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: sticky,
+        scrub: 1,
+        pinSpacing: false,
+      }
+    });
+
+    // ---- Phase 1: Ken Burns zoom + title fade out (0% → 25%) ----
+    if (bgImg) {
+      tl.fromTo(bgImg,
+        { scale: 1 },
+        { scale: 1.15, duration: 1, ease: 'none' },
+        0
+      );
+    }
+
+    // Title + eyebrow fade out upward
+    if (introContent) {
+      tl.to(introContent,
+        { opacity: 0, y: -60, duration: 0.15, ease: 'power2.in' },
+        0.15
+      );
+    }
+
+    // ---- Phase 2: Panels slide in (25% → 75%) ----
+    if (panelsWrap && panels.length) {
+      // Show panels container
+      tl.to(panelsWrap,
+        { opacity: 1, pointerEvents: 'auto', duration: 0.01 },
+        0.24
+      );
+
+      // Each panel slides in from right (or bottom on mobile)
+      panels.forEach((panel, i) => {
+        const startPos = 0.25 + (i * 0.15);
+        if (isMobile) {
+          tl.fromTo(panel,
+            { yPercent: 100 },
+            { yPercent: 0, duration: 0.14, ease: 'power3.out' },
+            startPos
+          );
+        } else {
+          tl.fromTo(panel,
+            { xPercent: 100 },
+            { xPercent: 0, duration: 0.14, ease: 'power3.out' },
+            startPos
+          );
         }
       });
     }
 
-    // Pillars staggered entrance
-    gsap.from('.concept__pillar', {
-      opacity: 0,
-      y: 60,
-      duration: 0.9,
-      stagger: 0.12,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.concept__pillars',
-        start: 'top 82%',
-        once: true,
-      }
-    });
+    // ---- Phase 3: Summary overlay (75% → 100%) ----
+    if (summary) {
+      tl.to(summary,
+        { opacity: 1, pointerEvents: 'auto', duration: 0.12, ease: 'power2.out' },
+        0.78
+      );
+    }
   }
 
   // ========================================
@@ -1150,7 +1193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateCursor();
 
-    const interactiveSelectors = 'a, button, [data-magnetic], .buffet__slide, .galerie__item, .concept__pillar, .concept__tag, input, textarea';
+    const interactiveSelectors = 'a, button, [data-magnetic], .buffet__slide, .galerie__item, .concept__panel, input, textarea';
 
     document.querySelectorAll(interactiveSelectors).forEach(el => {
       el.addEventListener('mouseenter', () => {

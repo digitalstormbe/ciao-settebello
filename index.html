@@ -22,7 +22,7 @@
   <!-- SplitType -->
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="styles.css?v=26">
 </head>
 <body>
 
@@ -200,59 +200,56 @@
     </div>
   </section>
 
-  <!-- ==================== CONCEPT — Immersive Story ==================== -->
+  <!-- ==================== CONCEPT — Cinematic Scroll Reveal ==================== -->
   <section id="concept" class="concept">
-    <div class="concept__inner">
-      <!-- Top: Big intro -->
+    <div class="concept__sticky">
+      <!-- Phase 1: Full-screen title intro -->
       <div class="concept__intro">
-        <p class="concept__eyebrow" data-reveal>l'Italie authentique</p>
-        <h2 class="concept__title" data-split-words>UNE TABLE,<br>MILLE SAVEURS</h2>
-      </div>
-
-      <!-- Showcase: Image + Text side by side -->
-      <div class="concept__showcase">
-        <div class="concept__img-wrap">
-          <div class="concept__img-reveal" data-clip-reveal>
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Cuisine italienne authentique" loading="lazy">
-          </div>
-          <div class="sticker sticker--concept" data-speed="0.3">
-            <span>FAIT MAISON</span>
-          </div>
+        <div class="concept__bg">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=80" alt="" aria-hidden="true" class="concept__bg-img">
+          <div class="concept__bg-overlay"></div>
         </div>
-        <div class="concept__text-col">
-          <p class="concept__desc" data-reveal>
-            Bienvenue au seul buffet italien a volonte en Belgique. Chez Ciao Settebello,
-            nous avons apporte un morceau de l'Italie directement a Boussu. Notre buffet
-            vous invite a explorer les delices de la cuisine italienne dans une atmosphere
-            chaleureuse et conviviale.
-          </p>
-          <div class="concept__tags" data-reveal>
-            <span class="concept__tag">200+ plats</span>
-            <span class="concept__tag">Fait maison</span>
-            <span class="concept__tag">Famiglia</span>
-          </div>
+        <div class="concept__intro-content">
+          <p class="concept__eyebrow">L'ITALIE AUTHENTIQUE</p>
+          <h2 class="concept__title">UNE TABLE,<br>MILLE SAVEURS</h2>
         </div>
       </div>
 
-      <!-- Value Pillars -->
-      <div class="concept__pillars">
-        <div class="concept__pillar" data-tilt>
-          <div class="concept__pillar-num">01</div>
-          <div class="concept__pillar-line"></div>
-          <h3 class="concept__pillar-title">BUFFET<br>A VOLONTE</h3>
-          <p class="concept__pillar-desc">Servez-vous a volonte parmi plus de 200 plats italiens authentiques</p>
+      <!-- Phase 2: Horizontal panels -->
+      <div class="concept__panels">
+        <div class="concept__panel" data-panel="1">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Buffet italien" class="concept__panel-img">
+          <div class="concept__panel-overlay"></div>
+          <div class="concept__panel-content">
+            <span class="concept__panel-num">01</span>
+            <h3 class="concept__panel-title">BUFFET<br>A VOLONTE</h3>
+            <p class="concept__panel-desc">Servez-vous parmi plus de 200 plats italiens authentiques</p>
+          </div>
         </div>
-        <div class="concept__pillar" data-tilt>
-          <div class="concept__pillar-num">02</div>
-          <div class="concept__pillar-line"></div>
-          <h3 class="concept__pillar-title">FAIT<br>MAISON</h3>
-          <p class="concept__pillar-desc">Recettes traditionnelles preparees sur place chaque jour</p>
+        <div class="concept__panel" data-panel="2">
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80" alt="Fait maison" class="concept__panel-img">
+          <div class="concept__panel-overlay"></div>
+          <div class="concept__panel-content">
+            <span class="concept__panel-num">02</span>
+            <h3 class="concept__panel-title">FAIT<br>MAISON</h3>
+            <p class="concept__panel-desc">Recettes traditionnelles preparees sur place chaque jour</p>
+          </div>
         </div>
-        <div class="concept__pillar" data-tilt>
-          <div class="concept__pillar-num">03</div>
-          <div class="concept__pillar-line"></div>
-          <h3 class="concept__pillar-title">AMBIANCE<br>FAMIGLIA</h3>
-          <p class="concept__pillar-desc">Un cadre chaleureux comme a la maison en Italie</p>
+        <div class="concept__panel" data-panel="3">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Famiglia" class="concept__panel-img">
+          <div class="concept__panel-overlay"></div>
+          <div class="concept__panel-content">
+            <span class="concept__panel-num">03</span>
+            <h3 class="concept__panel-title">AMBIANCE<br>FAMIGLIA</h3>
+            <p class="concept__panel-desc">Un cadre chaleureux comme a la maison en Italie</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3: Summary overlay -->
+      <div class="concept__summary">
+        <div class="concept__summary-card">
+          <p>Le seul buffet italien a volonte en Belgique.<br>200+ plats, faits maison, chaque jour.</p>
         </div>
       </div>
     </div>
@@ -623,6 +620,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=25"></script>
+  <script src="script.js?v=26"></script>
 </body>
 </html>
