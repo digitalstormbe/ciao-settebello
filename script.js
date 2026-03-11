@@ -540,7 +540,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sticky = document.querySelector('.concept__sticky');
     if (!section || !sticky) return;
 
-    const bgImg = document.querySelector('.concept__bg-img');
     const introContent = document.querySelector('.concept__intro-content');
     const panelsWrap = document.querySelector('.concept__panels');
     const panels = document.querySelectorAll('.concept__panel');
@@ -558,16 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // ---- Phase 1: Ken Burns zoom + title fade out (0% → 25%) ----
-    if (bgImg) {
-      tl.fromTo(bgImg,
-        { scale: 1 },
-        { scale: 1.15, duration: 1, ease: 'none' },
-        0
-      );
-    }
-
-    // Title + eyebrow fade out upward
+    // ---- Phase 1: Title fade out (0% → 25%) ----
     if (introContent) {
       tl.to(introContent,
         { opacity: 0, y: -60, duration: 0.15, ease: 'power2.in' },
