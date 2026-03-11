@@ -252,76 +252,89 @@
     </div>
   </section>
 
-  <!-- ==================== BUFFET — Horizontal Scroll Showcase ==================== -->
+  <!-- ==================== BUFFET — 3D Stacked Cards ==================== -->
   <section id="buffet" class="buffet">
-    <!-- Large background text -->
-    <div class="buffet__bg-text" aria-hidden="true">BUFFET</div>
+    <div class="buffet__inner">
+      <div class="buffet__header">
+        <p class="buffet__eyebrow" data-reveal>un voyage culinaire</p>
+        <h2 class="buffet__title" data-split-words>NOTRE BUFFET</h2>
+      </div>
 
-    <div class="buffet__header">
-      <p class="buffet__eyebrow" data-reveal>un voyage culinaire</p>
-      <h2 class="buffet__title" data-split-words>NOTRE BUFFET</h2>
-    </div>
+      <!-- Ghost number that changes with active card -->
+      <div class="buffet__ghost-num" aria-hidden="true">01</div>
 
-    <div class="buffet__carousel-wrap">
-      <div class="buffet__carousel" id="buffetCarousel">
-        <article class="buffet__slide">
-          <div class="buffet__slide-img">
+      <!-- Card stack container -->
+      <div class="buffet__stack">
+        <article class="buffet__card" data-card="0">
+          <div class="buffet__card-img">
             <img src="assets/buffet/antipasti.jpg" alt="Antipasti italiens" loading="lazy">
           </div>
-          <div class="buffet__slide-content">
-            <span class="buffet__slide-num">01</span>
-            <h3 class="buffet__slide-name">Antipasti</h3>
-            <p class="buffet__slide-desc">Bruschette, caprese, legumes grilles et charcuterie italienne</p>
+          <div class="buffet__card-overlay"></div>
+          <div class="buffet__card-content">
+            <span class="buffet__card-num">01</span>
+            <h3 class="buffet__card-name">Antipasti</h3>
+            <p class="buffet__card-desc">Bruschette, caprese, legumes grilles et charcuterie italienne</p>
           </div>
         </article>
-        <article class="buffet__slide">
-          <div class="buffet__slide-img">
+        <article class="buffet__card" data-card="1">
+          <div class="buffet__card-img">
             <img src="assets/buffet/pizze.jpg" alt="Pizza Napoletana" loading="lazy">
           </div>
-          <div class="buffet__slide-content">
-            <span class="buffet__slide-num">02</span>
-            <h3 class="buffet__slide-name">Pizze</h3>
-            <p class="buffet__slide-desc">Cuites a la minute dans notre four traditionnel a bois</p>
+          <div class="buffet__card-overlay"></div>
+          <div class="buffet__card-content">
+            <span class="buffet__card-num">02</span>
+            <h3 class="buffet__card-name">Pizze</h3>
+            <p class="buffet__card-desc">Cuites a la minute dans notre four traditionnel a bois</p>
           </div>
         </article>
-        <article class="buffet__slide">
-          <div class="buffet__slide-img">
+        <article class="buffet__card" data-card="2">
+          <div class="buffet__card-img">
             <img src="assets/buffet/primi-piatti.jpg" alt="Pasta Fresca" loading="lazy">
           </div>
-          <div class="buffet__slide-content">
-            <span class="buffet__slide-num">03</span>
-            <h3 class="buffet__slide-name">Primi Piatti</h3>
-            <p class="buffet__slide-desc">Pates fraiches preparees dans la meule de parmesan</p>
+          <div class="buffet__card-overlay"></div>
+          <div class="buffet__card-content">
+            <span class="buffet__card-num">03</span>
+            <h3 class="buffet__card-name">Primi Piatti</h3>
+            <p class="buffet__card-desc">Pates fraiches preparees dans la meule de parmesan</p>
           </div>
         </article>
-        <article class="buffet__slide">
-          <div class="buffet__slide-img">
+        <article class="buffet__card" data-card="3">
+          <div class="buffet__card-img">
             <img src="assets/buffet/secondi.jpg" alt="Grillades" loading="lazy">
           </div>
-          <div class="buffet__slide-content">
-            <span class="buffet__slide-num">04</span>
-            <h3 class="buffet__slide-name">Secondi</h3>
-            <p class="buffet__slide-desc">Viandes grillees et saveurs mediterraneennes a la braise</p>
+          <div class="buffet__card-overlay"></div>
+          <div class="buffet__card-content">
+            <span class="buffet__card-num">04</span>
+            <h3 class="buffet__card-name">Secondi</h3>
+            <p class="buffet__card-desc">Viandes grillees et saveurs mediterraneennes a la braise</p>
           </div>
         </article>
-        <article class="buffet__slide">
-          <div class="buffet__slide-img">
+        <article class="buffet__card" data-card="4">
+          <div class="buffet__card-img">
             <img src="assets/buffet/dolci.jpg" alt="Desserts italiens" loading="lazy">
           </div>
-          <div class="buffet__slide-content">
-            <span class="buffet__slide-num">05</span>
-            <h3 class="buffet__slide-name">Dolci</h3>
-            <p class="buffet__slide-desc">Tiramisu, cannoli, panna cotta et fontaine de chocolat</p>
+          <div class="buffet__card-overlay"></div>
+          <div class="buffet__card-content">
+            <span class="buffet__card-num">05</span>
+            <h3 class="buffet__card-name">Dolci</h3>
+            <p class="buffet__card-desc">Tiramisu, cannoli, panna cotta et fontaine de chocolat</p>
           </div>
         </article>
       </div>
-    </div>
 
-    <div class="buffet__footer">
-      <a href="#menu" class="buffet__cta" data-magnetic>
-        <span>DECOUVRIR LA CARTE</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </a>
+      <!-- Counter -->
+      <div class="buffet__counter">
+        <span class="buffet__counter-current">1</span>
+        <span class="buffet__counter-sep">/</span>
+        <span class="buffet__counter-total">5</span>
+      </div>
+
+      <div class="buffet__footer">
+        <a href="#menu" class="buffet__cta" data-magnetic>
+          <span>DECOUVRIR LA CARTE</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
