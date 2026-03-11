@@ -102,10 +102,7 @@ ul, ol { list-style: none; }
   object-fit: contain;
   display: block;
   margin: 0 auto;
-  padding: 12px;
-  background: var(--cream);
-  border-radius: 50%;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  filter: brightness(0) invert(1);
   animation: loaderPulse 1.5s ease-in-out infinite;
 }
 @keyframes loaderPulse {
