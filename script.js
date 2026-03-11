@@ -321,6 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMarquee();
     initConceptAnimations();
     initBuffetHorizontalScroll();
+    initMenuBookFlip();
     initGalerieAnimations();
     initStatsAnimations();
     initInfosAnimations();
@@ -637,6 +638,212 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         delay: i * 0.08,
       });
+    });
+  }
+
+  // ========================================
+  // MENU — Book Flip 3D
+  // ========================================
+  function initMenuBookFlip() {
+    const menuBook = document.getElementById('menuBook');
+    const menuCover = document.getElementById('menuCover');
+    const menuInterior = document.getElementById('menuInterior');
+    const menuBack = document.getElementById('menuBack');
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const menuNext = document.getElementById('menuNext');
+    const menuPrev = document.getElementById('menuPrev');
+
+    if (!menuBook || !menuCover) return;
+
+    let currentState = 'cover'; // 'cover' | 'interior' | 'back'
+
+    function openBook() {
+      if (currentState !== 'cover') return;
+      currentState = 'interior';
+
+      // Show interior element first (display: block), then animate
+      menuInterior.style.display = 'block';
+      gsap.set(menuInterior, { opacity: 0 });
+
+      // Animate cover flip
+      gsap.to(menuCover, {
+        rotateY: -180,
+        duration: 0.9,
+        ease: 'power3.inOut',
+        onStart: () => {
+          menuBook.classList.add('is-open');
+          gsap.to(menuCover, {
+            boxShadow: '0 0 0 rgba(0,0,0,0)',
+            duration: 0.45,
+          });
+        },
+      });
+
+      // Fade in interior
+      gsap.to(menuInterior, {
+        opacity: 1,
+        duration: 0.5,
+        delay: 0.5,
+        ease: 'power2.out',
+      });
+
+      // Show navigation
+      menuNext.style.display = 'flex';
+      menuClose.style.display = 'flex';
+      gsap.fromTo([menuClose, menuNext],
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.4, delay: 0.8, stagger: 0.1, ease: 'back.out(2)' }
+      );
+
+      // Hide CTA
+      menuOpen.classList.add('is-hidden');
+    }
+
+    function showBackPage() {
+      if (currentState !== 'interior') return;
+      currentState = 'back';
+
+      // Prepare back page
+      menuBack.style.display = 'block';
+      gsap.set(menuBack, { opacity: 0 });
+
+      // Fade out interior
+      gsap.to(menuInterior, {
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+          menuInterior.style.display = 'none';
+          menuBook.classList.remove('is-open');
+          menuBook.classList.add('is-back');
+        }
+      });
+
+      // Fade in back page
+      gsap.to(menuBack, {
+        opacity: 1,
+        duration: 0.5,
+        delay: 0.45,
+        ease: 'power2.out',
+      });
+
+      // Switch arrows
+      gsap.to(menuNext, {
+        opacity: 0, scale: 0.8, duration: 0.2,
+        onComplete: () => { menuNext.style.display = 'none'; }
+      });
+      menuPrev.style.display = 'flex';
+      gsap.fromTo(menuPrev,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.3, delay: 0.5, ease: 'back.out(2)' }
+      );
+    }
+
+    function showInteriorFromBack() {
+      if (currentState !== 'back') return;
+      currentState = 'interior';
+
+      // Prepare interior
+      menuInterior.style.display = 'block';
+      gsap.set(menuInterior, { opacity: 0 });
+
+      // Fade out back
+      gsap.to(menuBack, {
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+          menuBack.style.display = 'none';
+          menuBook.classList.remove('is-back');
+          menuBook.classList.add('is-open');
+        }
+      });
+
+      // Fade in interior
+      gsap.to(menuInterior, {
+        opacity: 1,
+        duration: 0.5,
+        delay: 0.45,
+        ease: 'power2.out',
+      });
+
+      // Switch arrows
+      gsap.to(menuPrev, {
+        opacity: 0, scale: 0.8, duration: 0.2,
+        onComplete: () => { menuPrev.style.display = 'none'; }
+      });
+      menuNext.style.display = 'flex';
+      gsap.fromTo(menuNext,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.3, delay: 0.5, ease: 'back.out(2)' }
+      );
+    }
+
+    function closeBook() {
+      currentState = 'cover';
+
+      // Hide all navigation
+      gsap.to([menuNext, menuPrev, menuClose], {
+        opacity: 0, scale: 0.8, duration: 0.2,
+        onComplete: function() {
+          menuNext.style.display = 'none';
+          menuPrev.style.display = 'none';
+          menuClose.style.display = 'none';
+        }
+      });
+
+      // Fade out pages
+      gsap.to([menuInterior, menuBack], {
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.in',
+        onComplete: () => {
+          menuInterior.style.display = 'none';
+          menuBack.style.display = 'none';
+          menuBook.classList.remove('is-open', 'is-back');
+        }
+      });
+
+      // Reset cover — show and flip back
+      menuCover.style.display = '';
+      gsap.set(menuCover, { rotateY: -180 });
+      gsap.to(menuCover, {
+        rotateY: 0,
+        duration: 0.8,
+        delay: 0.3,
+        ease: 'power3.inOut',
+        onComplete: () => {
+          gsap.set(menuCover, {
+            boxShadow: '8px 8px 30px rgba(0,0,0,0.25), 2px 2px 8px rgba(0,0,0,0.12)',
+          });
+        }
+      });
+
+      // Show CTA
+      menuOpen.classList.remove('is-hidden');
+    }
+
+    // Event listeners
+    menuOpen.addEventListener('click', openBook);
+    menuCover.addEventListener('click', openBook);
+    menuNext.addEventListener('click', showBackPage);
+    menuPrev.addEventListener('click', showInteriorFromBack);
+    menuClose.addEventListener('click', closeBook);
+
+    // Scroll reveal for the section
+    gsap.from('.menu-book__cover', {
+      y: 60,
+      opacity: 0,
+      scale: 0.92,
+      rotation: -3,
+      duration: 1.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.menu-section',
+        start: 'top 70%',
+        once: true,
+      }
     });
   }
 

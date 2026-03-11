@@ -1061,6 +1061,234 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================
+   MENU — Book Flip 3D
+   ============================================ */
+.menu-section {
+  background: var(--cream);
+  padding: var(--section-pad) 0;
+  overflow: hidden;
+  position: relative;
+}
+.menu-section__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu-section__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.menu-section__eyebrow {
+  font-family: var(--font-script);
+  font-size: clamp(16px, 2vw, 22px);
+  color: var(--red);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.menu-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7vw, 100px);
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--black);
+  letter-spacing: -0.03em;
+}
+
+/* --- Book container --- */
+.menu-book {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  perspective: 1800px;
+  margin: 0 auto 48px;
+  /* Transition for width when opening to double page */
+  transition: max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.menu-book.is-open {
+  max-width: 860px;
+}
+.menu-book.is-back {
+  max-width: 420px;
+}
+
+/* --- Cover --- */
+.menu-book__cover {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    8px 8px 30px rgba(0,0,0,0.25),
+    2px 2px 8px rgba(0,0,0,0.12);
+}
+.menu-book__cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+  backface-visibility: hidden;
+}
+.menu-book__cover:hover {
+  box-shadow:
+    10px 10px 40px rgba(0,0,0,0.3),
+    3px 3px 12px rgba(0,0,0,0.15);
+}
+
+/* Cover flipped state — take out of flow */
+.menu-book.is-open .menu-book__cover {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  transform: rotateY(-180deg);
+  pointer-events: none;
+  box-shadow: none;
+  backface-visibility: hidden;
+}
+.menu-book.is-back .menu-book__cover {
+  display: none;
+}
+
+/* --- Interior pages --- */
+.menu-book__interior {
+  display: none;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    6px 6px 24px rgba(0,0,0,0.2),
+    2px 2px 8px rgba(0,0,0,0.1);
+  z-index: 2;
+  opacity: 0;
+}
+.menu-book__interior img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.menu-book.is-open .menu-book__interior {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Back page --- */
+.menu-book__back {
+  display: none;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    6px 6px 24px rgba(0,0,0,0.2),
+    2px 2px 8px rgba(0,0,0,0.1);
+  z-index: 2;
+  opacity: 0;
+}
+.menu-book__back img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.menu-book.is-back .menu-book__back {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Navigation arrows --- */
+.menu-book__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s, transform 0.3s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.menu-book__nav:hover {
+  background: var(--red);
+  transform: translateY(-50%) scale(1.1);
+}
+.menu-book__nav--next { right: -64px; }
+.menu-book__nav--prev { left: -64px; }
+
+/* --- Close button --- */
+.menu-book__close {
+  position: absolute;
+  top: -48px; right: -12px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s, transform 0.3s;
+}
+.menu-book__close:hover {
+  background: var(--red);
+  transform: rotate(90deg);
+}
+
+/* --- CTA Button --- */
+.menu-section__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 18px 44px;
+  border-radius: 50px;
+  background: var(--red);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 20px rgba(237,28,36,0.3);
+}
+.menu-section__cta:hover {
+  background: var(--red-dark);
+  transform: scale(1.05);
+  box-shadow: 0 6px 28px rgba(237,28,36,0.4);
+}
+.menu-section__cta.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  .menu-book { max-width: 300px; }
+  .menu-book.is-open { max-width: 100%; }
+  .menu-book.is-back { max-width: 300px; }
+  .menu-book__nav--next { right: -8px; }
+  .menu-book__nav--prev { left: -8px; }
+  .menu-book__nav { width: 40px; height: 40px; }
+  .menu-book__close { top: -44px; right: 0; }
+}
+
+/* ============================================
    GALERIE — Staggered Asymmetric Grid
    ============================================ */
 .galerie {
