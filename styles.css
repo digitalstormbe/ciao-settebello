@@ -1853,13 +1853,8 @@ ul, ol { list-style: none; }
   background: var(--red);
   border-radius: clamp(20px, 3vw, 32px);
   margin: 0 clamp(12px, 2vw, 40px) clamp(12px, 2vw, 40px);
+  padding: clamp(80px, 10vw, 140px) clamp(48px, 5vw, 80px) 0;
   overflow: hidden;
-}
-
-/* --- Main Footer Grid --- */
-.footer__main {
-  padding: clamp(100px, 12vw, 160px) clamp(48px, 5vw, 80px) clamp(80px, 8vw, 120px);
-  border-bottom: 1px solid rgba(255, 245, 230, 0.15);
 }
 .footer__grid {
   max-width: 1200px;
