@@ -660,10 +660,7 @@ ul, ol { list-style: none; }
    ============================================ */
 .marquee-section {
   background: var(--cream);
-  padding: 24px 0;
-  transform: rotate(-2deg);
-  margin: -20px -20px;
-  width: calc(100% + 40px);
+  padding: 10px 0;
   position: relative;
   z-index: 2;
 }
@@ -671,6 +668,13 @@ ul, ol { list-style: none; }
   padding: 14px 0;
   border-top: 2px solid var(--red);
   overflow: hidden;
+  margin: 0 -20px;
+  width: calc(100% + 40px);
+  transform: rotate(-2deg);
+}
+.marquee--reverse {
+  transform: rotate(2deg);
+  margin-top: -8px;
 }
 .marquee:last-child { border-bottom: 2px solid var(--red); }
 .marquee__track {
