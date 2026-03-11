@@ -1416,13 +1416,35 @@ ul, ol { list-style: none; }
 
 /* --- Mobile --- */
 @media (max-width: 768px) {
-  .menu-book { max-width: 300px; }
+  .menu-book { max-width: 100%; }
   .menu-book.is-open { max-width: 100%; }
-  .menu-book.is-back { max-width: 300px; }
-  .menu-book__nav--next { right: -8px; }
-  .menu-book__nav--prev { left: -8px; }
-  .menu-book__nav { width: 40px; height: 40px; }
-  .menu-book__close { top: -44px; right: 0; }
+  .menu-book.is-back { max-width: 100%; }
+  .menu-book__nav {
+    position: fixed;
+    transform: none;
+    width: 48px;
+    height: 48px;
+    bottom: 24px;
+    top: auto;
+    z-index: 20;
+  }
+  .menu-book__nav:hover {
+    transform: scale(1.1);
+  }
+  .menu-book__nav--prev { left: 24px; right: auto; }
+  .menu-book__nav--next { right: 24px; left: auto; }
+  .menu-book__close {
+    position: fixed;
+    top: auto;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    z-index: 20;
+  }
+  .menu-book__close:hover {
+    transform: translateX(-50%) rotate(90deg);
+  }
 }
 
 /* ============================================
