@@ -347,6 +347,7 @@
       </div>
 
       <div class="menu-book" id="menuBook">
+        <div class="menu-book__pulse" aria-hidden="true"></div>
         <div class="menu-book__cover" id="menuCover">
           <img src="assets/menu/cover.webp" alt="Couverture du menu Ciao Settebello" draggable="false">
         </div>
@@ -367,10 +368,22 @@
         </button>
       </div>
 
+      <!-- Dot indicator -->
+      <div class="menu-book__dots">
+        <button class="menu-book__dot is-active" data-page="cover" aria-label="Couverture"></button>
+        <button class="menu-book__dot" data-page="interior" aria-label="Interieur"></button>
+        <button class="menu-book__dot" data-page="back" aria-label="Dos"></button>
+      </div>
+
       <button class="menu-section__cta" id="menuOpen">
         <span>Ouvrir le menu</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       </button>
+
+      <p class="menu-section__hint" id="menuHint">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+        <span>Cliquez pour feuilleter</span>
+      </p>
     </div>
   </section>
 
