@@ -745,7 +745,7 @@ ul, ol { list-style: none; }
   font-family: var(--font-body);
   font-size: clamp(14px, 1.8vw, 18px);
   font-weight: 700;
-  color: var(--red);
+  color: var(--black);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 12px;
@@ -1100,7 +1100,7 @@ ul, ol { list-style: none; }
   font-family: var(--font-body);
   font-size: clamp(14px, 1.8vw, 18px);
   font-weight: 700;
-  color: var(--red);
+  color: var(--black);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 12px;
@@ -1111,7 +1111,7 @@ ul, ol { list-style: none; }
   font-weight: 900;
   line-height: 0.9;
   text-transform: uppercase;
-  color: var(--black);
+  color: var(--red);
   letter-spacing: -0.03em;
 }
 
