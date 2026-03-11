@@ -137,6 +137,7 @@ ul, ol { list-style: none; }
   position: relative;
   height: 400vh;
   background: var(--red);
+  z-index: 1;
 }
 .scroll-anim__sticky {
   position: sticky;
@@ -688,9 +689,9 @@ ul, ol { list-style: none; }
   background: var(--cream);
   padding: 10px 0;
   position: relative;
-  z-index: 2;
-  margin-top: -60px;
-  padding-top: 20px;
+  z-index: 10;
+  margin-top: -80px;
+  padding-top: 30px;
 }
 .marquee {
   padding: 14px 0;
