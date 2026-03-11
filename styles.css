@@ -1741,7 +1741,7 @@ ul, ol { list-style: none; }
 
 /* --- Main Footer Grid --- */
 .footer__main {
-  padding: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 64px);
+  padding: clamp(60px, 8vw, 100px) clamp(40px, 5vw, 80px);
   border-bottom: 1px solid rgba(255,245,230,0.08);
 }
 .footer__grid {
@@ -1871,7 +1871,7 @@ ul, ol { list-style: none; }
 .footer__bottom {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px clamp(32px, 4vw, 64px);
+  padding: 28px clamp(40px, 5vw, 80px);
   display: flex;
   align-items: center;
   justify-content: space-between;
