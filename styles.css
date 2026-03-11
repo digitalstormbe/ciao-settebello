@@ -660,10 +660,15 @@ ul, ol { list-style: none; }
    ============================================ */
 .marquee-section {
   background: var(--cream);
-  padding: 12px 0;
+  padding: 24px 0;
+  transform: rotate(-2deg);
+  margin: -20px -20px;
+  width: calc(100% + 40px);
+  position: relative;
+  z-index: 2;
 }
 .marquee {
-  padding: 20px 0;
+  padding: 14px 0;
   border-top: 2px solid var(--red);
   overflow: hidden;
 }
