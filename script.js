@@ -616,8 +616,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const totalCards = cards.length;
     const nums = ['01', '02', '03', '04', '05'];
+    const flyCount = totalCards - 1; // 4 cards fly away, card 0 stays
 
-    // Set initial stacked positions: bottom card first (index 0), top card last (index 4)
+    // Pre-calculate random end rotations so scrub stays deterministic
+    const endRotations = Array.from({ length: totalCards }, () =>
+      gsap.utils.random(-8, 8)
+    );
+
+    // Initial stacked positions: index 0 = bottom, index 4 = top (highest z-index)
     cards.forEach((card, i) => {
       const stackOffset = (totalCards - 1 - i) * 8;
       const stackRotation = (totalCards - 1 - i) * 1.5;
@@ -638,41 +644,46 @@ document.addEventListener('DOMContentLoaded', () => {
         scrub: 1,
         invalidateOnRefresh: true,
         anticipatePin: 1,
+        onUpdate: (self) => {
+          // Update ghost number and counter based on scroll progress
+          // Switches text at ~70% through each fly-away phase
+          const p = self.progress;
+          const step = Math.min(Math.floor(p * flyCount + 0.3), flyCount);
+          const visibleIndex = Math.max(totalCards - 1 - step, 0);
+          if (ghostNum) ghostNum.textContent = nums[visibleIndex];
+          if (counterCurrent) counterCurrent.textContent = String(step + 1);
+        }
       }
     });
 
-    // Animate each card flying away (top card first = last in DOM = index totalCards-1)
-    for (let i = totalCards - 1; i >= 1; i--) {
-      const card = cards[i];
-      const progress = (totalCards - 1 - i) / (totalCards - 1);
-      const nextCardIndex = i - 1;
+    // Animate each card flying away sequentially (top card first)
+    for (let step = 0; step < flyCount; step++) {
+      const cardIndex = totalCards - 1 - step; // 4, 3, 2, 1
+      const card = cards[cardIndex];
+      const label = `fly${step}`;
 
+      tl.addLabel(label);
+
+      // Card flies away
       tl.to(card, {
         y: -300,
-        rotation: gsap.utils.random(-8, 8),
+        rotation: endRotations[cardIndex],
         rotateX: 15,
         scale: 0.85,
         opacity: 0,
         duration: 1,
         ease: 'power2.in',
-        onStart: () => {
-          if (ghostNum) ghostNum.textContent = nums[nextCardIndex] || nums[0];
-          if (counterCurrent) counterCurrent.textContent = String(totalCards - i + 1);
-        }
-      }, progress * 0.85);
+      }, label);
 
-      // Restack remaining cards smoothly
-      if (i > 1) {
-        for (let j = i - 1; j >= 0; j--) {
-          const belowCard = cards[j];
-          const newStackPos = (i - 1 - j);
-          tl.to(belowCard, {
-            y: newStackPos * 8,
-            rotation: newStackPos * 1.5,
-            duration: 0.5,
-            ease: 'power2.out',
-          }, progress * 0.85);
-        }
+      // Restack remaining cards simultaneously
+      for (let j = cardIndex - 1; j >= 0; j--) {
+        const newStackPos = cardIndex - 1 - j;
+        tl.to(cards[j], {
+          y: newStackPos * 8,
+          rotation: newStackPos * 1.5,
+          duration: 0.5,
+          ease: 'power2.out',
+        }, label);
       }
     }
 
