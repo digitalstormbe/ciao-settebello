@@ -689,6 +689,8 @@ ul, ol { list-style: none; }
   padding: 10px 0;
   position: relative;
   z-index: 2;
+  margin-top: -60px;
+  padding-top: 20px;
 }
 .marquee {
   padding: 14px 0;
