@@ -733,10 +733,13 @@ ul, ol { list-style: none; }
   margin-bottom: clamp(48px, 8vw, 80px);
 }
 .concept__eyebrow {
-  font-family: var(--font-script);
-  font-size: clamp(20px, 3vw, 32px);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 700;
   color: var(--red);
-  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
 }
 .concept__title {
   font-family: var(--font-display);
@@ -916,11 +919,14 @@ ul, ol { list-style: none; }
   z-index: 2;
 }
 .buffet__eyebrow {
-  font-family: var(--font-script);
-  font-size: clamp(20px, 3vw, 32px);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 700;
   color: var(--cream);
   opacity: 0.85;
-  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
 }
 .buffet__title {
   font-family: var(--font-display);
@@ -1082,11 +1088,13 @@ ul, ol { list-style: none; }
   margin-bottom: 60px;
 }
 .menu-section__eyebrow {
-  font-family: var(--font-script);
-  font-size: clamp(16px, 2vw, 22px);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 700;
   color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   margin-bottom: 12px;
-  letter-spacing: 0.02em;
 }
 .menu-section__title {
   font-family: var(--font-display);
@@ -1305,10 +1313,13 @@ ul, ol { list-style: none; }
   margin-bottom: clamp(48px, 8vw, 80px);
 }
 .galerie__eyebrow {
-  font-family: var(--font-script);
-  font-size: clamp(18px, 2.5vw, 28px);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 700;
   color: var(--black-soft);
-  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
 }
 .galerie__title {
   font-family: var(--font-display);
@@ -1547,10 +1558,13 @@ ul, ol { list-style: none; }
   margin-bottom: clamp(48px, 8vw, 72px);
 }
 .infos__eyebrow {
-  font-family: var(--font-script);
-  font-size: clamp(18px, 2.5vw, 28px);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 700;
   color: var(--black-soft);
-  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
 }
 .infos__title {
   font-family: var(--font-display);
@@ -1661,10 +1675,13 @@ ul, ol { list-style: none; }
 }
 
 .footer__script {
-  font-family: var(--font-script);
-  font-size: clamp(20px, 3vw, 32px);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 700;
   color: var(--cream);
   opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   margin-bottom: 8px;
 }
 .footer__big-title {
