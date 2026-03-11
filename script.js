@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initBuffetHorizontalScroll();
     initMenuBookFlip();
     initStatsAnimations();
-    initInfosAnimations();
+    // initInfosAnimations removed — section deleted
     initFooterAnimations();
   }
 
@@ -1154,44 +1154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-  }
-
-  // ========================================
-  // INFOS — Card entrance animations
-  // ========================================
-  function initInfosAnimations() {
-    if (prefersReducedMotion) return;
-
-    gsap.from('.infos__card', {
-      opacity: 0,
-      y: 60,
-      scale: 0.92,
-      duration: 0.9,
-      stagger: 0.12,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.infos__grid',
-        start: 'top 80%',
-        once: true,
-      }
-    });
-
-    // Map reveal with scale
-    const mapEl = document.querySelector('.infos__map');
-    if (mapEl) {
-      gsap.from(mapEl, {
-        opacity: 0,
-        y: 40,
-        scale: 0.97,
-        duration: 1.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: mapEl,
-          start: 'top 85%',
-          once: true,
-        }
-      });
-    }
   }
 
   // ========================================
